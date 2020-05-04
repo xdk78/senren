@@ -24,6 +24,10 @@ class MyApp extends App {
           <GlobalStyle />
           <Head>
             <title>Senren</title>
+            <link
+              href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+              rel="stylesheet"
+            ></link>
           </Head>
           <Component {...pageProps} />
         </>

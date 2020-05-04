@@ -5,6 +5,7 @@ const LightTheme: ThemeInterface = {
   primaryDark: '#052555',
   primaryDarker: '#01142F',
   black: '#000000',
+  white: '#FFFFFF',
   gray900: '#131313',
   gray400: '#2F2F2F',
   gray300: '#404040',

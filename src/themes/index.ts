@@ -3,6 +3,7 @@ export default interface ThemeInterface {
   primaryDark: string
   primaryDarker: string
   black: string
+  white: string
   gray900: string
   gray400: string
   gray300: string
