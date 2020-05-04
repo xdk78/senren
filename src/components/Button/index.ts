@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import styled from '../../styled-components'
 
 type ButtonProps = {
-  color?: string;
-  big?: string;
-};
+  color?: string
+  big?: string
+}
 
 const Button = styled.button<ButtonProps>`
   background-color: #5199ff;
-  color: white;
-`;
+  color: ${({ theme }) => theme.primaryDark};
+`
 
-export default Button;
+export default Button

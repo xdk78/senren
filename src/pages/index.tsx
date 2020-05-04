@@ -1,9 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from '../styled-components'
 
 const Title = styled.h1`
-  color: red;
+  color: ${({ theme }) => theme.primaryLight};
   font-size: 50px;
 `
 
-export default () => <Title>My page</Title>
+const Index = () => <Title>My page</Title>
+
+export default Index
