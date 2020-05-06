@@ -10,8 +10,7 @@ const Input = styled.input<InputProps>`
   outline: 0px;
   border: 0px;
   border-radius: 20px;
-  width: 254px;
-  height: 49px;
+  width: 100%;
   margin: 10px;
   padding: 20px;
   &::placeholder {
