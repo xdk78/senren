@@ -6,11 +6,12 @@ const GlobalStyle = `
   font-family: "Montserrat", sans-serif;
 }
 
-html {
+html, body {
   margin:0px;
   padding: 0px;
   font-family: "Montserrat", sans-serif;
 }
+
 
 `
 
