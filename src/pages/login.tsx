@@ -1,10 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import FormWrapper, { StyledForm } from '../../components/Form'
-import AuthPageTemplate from '../../templates/AuthPageTemplate'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
-import LoginImage from '../../public/LoginImage.svg'
+import FormWrapper, { StyledForm } from '../components/Form'
+import AuthPageTemplate from '../templates/AuthPageTemplate'
+import Input from '../components/Input'
+import Button from '../components/Button'
+import LoginImage from '../public/LoginImage.svg'
 
 const Login = () => {
   const { register, handleSubmit, setValue } = useForm()
@@ -14,7 +14,7 @@ const Login = () => {
   }
   return (
     <AuthPageTemplate>
-      <FormWrapper text="Login" variant="light">
+      <FormWrapper text="Login">
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <Input
             placeholder="Email"
@@ -28,7 +28,7 @@ const Login = () => {
             name="password"
             ref={register({ required: true, minLength: 8 })}
           />
-          <Button type="submit" variant={'light'} large>
+          <Button type="submit" large>
             Login
           </Button>
         </StyledForm>

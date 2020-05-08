@@ -14,8 +14,7 @@ const StyledWrapper = styled.div`
   align-items: center;
   text-align: center;
   grid-auto-flow: dense;
-
-  background-color: ${({ theme }) => theme.primaryDark};
+  background-color: ${({ theme }) => theme.auth.background};
   @media (max-width: 1055px) {
     svg:only-of-type {
       display: none;

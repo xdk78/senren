@@ -19,8 +19,8 @@ export const HeadingTitle = () => {
       <Heading>Explore</Heading>
       <Paragraph>Discover your new favourite show</Paragraph>
       <DarkWrapper>
-        <Heading variant="dark">Explore</Heading>
-        <Paragraph variant="dark">Discover your new favourite show</Paragraph>
+        <Heading>Explore</Heading>
+        <Paragraph>Discover your new favourite show</Paragraph>
       </DarkWrapper>
     </>
   )
@@ -31,7 +31,7 @@ export const NormalHeading = () => {
     <>
       <Heading>Explore</Heading>
       <DarkWrapper>
-        <Heading variant="dark">Explore</Heading>
+        <Heading>Explore</Heading>
       </DarkWrapper>
     </>
   )
@@ -42,7 +42,7 @@ export const ParagraphStory = () => {
     <>
       <Paragraph>Discover your new favourite show</Paragraph>
       <DarkWrapper>
-        <Paragraph variant="dark">Discover your new favourite show</Paragraph>
+        <Paragraph>Discover your new favourite show</Paragraph>
       </DarkWrapper>
     </>
   )

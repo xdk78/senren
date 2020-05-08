@@ -1,12 +1,9 @@
 import React from 'react'
-import styled, { css } from '../../styled-components'
+import styled from '../../styled-components'
 
-type StyledWrapperProps = {
-  variant?: 'light' | 'dark'
-}
+type StyledWrapperProps = {}
 
 type FormProps = {
-  variant?: 'light' | 'dark'
   text: string
   children: JSX.Element
 }
@@ -19,19 +16,11 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   border-radius: 23px;
   justify-items: stretch;
   align-items: center;
-  background-color: ${({ theme }) => theme.primaryLight};
-  ${({ variant }) =>
-    variant === 'dark'
-      ? css`
-          background-color: ${({ theme }) => theme.primaryDark};
-        `
-      : css`
-          box-shadow: 4px 4px 25px rgba(81, 153, 255, 0.3);
-        `};
+  background-color: ${({ theme }) => theme.primary};
 `
 
 export const StyledHeading = styled.h1`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.buttonFont};
 `
 export const StyledForm = styled.form`
   display: flex;
@@ -43,9 +32,9 @@ export const StyledForm = styled.form`
   padding: 35px;
 `
 
-const FormWrapper = ({ variant, text, children }: FormProps) => {
+const FormWrapper = ({ text, children }: FormProps) => {
   return (
-    <StyledWrapper variant={variant}>
+    <StyledWrapper>
       <StyledHeading>{text}</StyledHeading>
       {children}
     </StyledWrapper>

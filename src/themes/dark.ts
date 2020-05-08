@@ -1,17 +1,30 @@
 import ThemeInterface from '.'
 
 const DarkTheme: ThemeInterface = {
-  primaryLight: '#5199FF',
-  primaryDark: '#052555',
-  primaryDarker: '#01142F',
-  black: '#000000',
-  white: '#FFFFFF',
-  gray900: '#131313',
-  gray400: '#2F2F2F',
-  gray300: '#404040',
-  gray200: '#707070',
-  gray100: '#EFEFEF',
-  gray50: '#F8F6FA',
+  primary: '#052555',
+  background: '#000000',
+  fontColor: '#FFFFFF',
+  buttonFont: '#FFFFFF',
+  inputs: {
+    input: '#01142F',
+    largeInput: '#2F2F2F',
+    placehoder: '#AFAFAF',
+  },
+  auth: {
+    background: '#01142F',
+    primary: '#052555',
+    button: '#5199FF',
+  },
+  nav: {
+    background: '#131313',
+    link: '#707070',
+    activeLink: '#FFFFFF',
+  },
+  mobileNav: {
+    background: '#2F2F2F',
+    iconBackground: '#404040',
+    icon: '#ABABAB',
+  },
 }
 
 export default DarkTheme

@@ -2,13 +2,12 @@ import styled, { css } from '../../styled-components'
 
 type GridElementProps = {
   small?: boolean
-  variant?: 'dark' | 'light'
 }
 
 const GridElement = styled.img<GridElementProps>`
   border-radius: 25px;
-  box-shadow: 2px 2px 80px #d1d1d1;
-  width: 250px;
+  /* box-shadow: 2px 2px 80px #d1d1d1; */
+  width: 100%;
   height: 250px;
   object-fit: cover;
   ${({ small }) =>
@@ -18,11 +17,6 @@ const GridElement = styled.img<GridElementProps>`
       width: 85px;
       height: 85px;
       object-fit: cover;
-    `}
-  ${({ variant }) =>
-    variant === 'dark' &&
-    css`
-      box-shadow: none;
     `}
 `
 export default GridElement

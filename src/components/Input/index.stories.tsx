@@ -18,7 +18,7 @@ export const normalInput = () => {
         <Input placeholder="Email" />
       </DarkWrapper>
       <DarkWrapper>
-        <Input variant="dark" placeholder="Email" />
+        <Input placeholder="Email" />
       </DarkWrapper>
     </>
   )
@@ -31,11 +31,7 @@ export const largeInput = () => {
         <Input large placeholder="Find Movies, TV Shows and more..." />
       </DarkWrapper>
       <DarkWrapper>
-        <Input
-          large
-          variant="dark"
-          placeholder="Find Movies, TV Shows and more..."
-        />
+        <Input large placeholder="Find Movies, TV Shows and more..." />
       </DarkWrapper>
     </>
   )

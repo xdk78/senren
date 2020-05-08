@@ -19,9 +19,7 @@ export const NormalButtonIcon = () => {
 export const AwardButtonIcon = () => {
   return (
     <>
-      <DarkWrapper>
-        {WrapButton(FaSearch)({ text: 'Explore', variant: 'dark' })}
-      </DarkWrapper>
+      <DarkWrapper>{WrapButton(FaSearch)({ text: 'Explore' })}</DarkWrapper>
     </>
   )
 }

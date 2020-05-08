@@ -1,17 +1,30 @@
 import ThemeInterface from '.'
 
 const LightTheme: ThemeInterface = {
-  primaryLight: '#5199FF',
-  primaryDark: '#052555',
-  primaryDarker: '#01142F',
-  black: '#000000',
-  white: '#FFFFFF',
-  gray900: '#131313',
-  gray400: '#2F2F2F',
-  gray300: '#404040',
-  gray200: '#707070',
-  gray100: '#EFEFEF',
-  gray50: '#F8F6FA',
+  primary: '#5199FF',
+  background: '#FFFFFF',
+  fontColor: '#000000',
+  buttonFont: '#FFFFFF',
+  inputs: {
+    input: '#FFFFFF',
+    largeInput: '#EFEFEF',
+    placehoder: '#AFAFAF',
+  },
+  auth: {
+    background: '#FFFFFF',
+    primary: '#5199FF',
+    button: '#052555',
+  },
+  nav: {
+    background: '#F8F6FA',
+    link: '#707070',
+    activeLink: '#5199FF',
+  },
+  mobileNav: {
+    background: '#FFFFFF',
+    iconBackground: '#F6F6F6',
+    icon: '#5199FF',
+  },
 }
 
 export default LightTheme

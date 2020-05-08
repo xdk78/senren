@@ -3,30 +3,32 @@ import styled, { css } from '../../styled-components'
 import { IconType } from 'react-icons'
 
 type StyledButtonIconProps = {
-  variant?: 'light' | 'dark'
   award?: boolean
 }
 
 type ButtonIconProps = {
-  variant?: 'light' | 'dark'
   award?: boolean
   children?: JSX.Element
-  text: string
+  text?: any
 }
 
 const StyledButtonIcon = styled.a<StyledButtonIconProps>`
-  color: ${({ theme }) => theme.gray200};
+  color: ${({ theme }) => theme.nav.link};
   display: grid;
   grid-template-columns: 25px 1fr;
-  ${({ variant }) =>
-    variant === 'dark' &&
+  margin: 35px 0px;
+  margin-left: 60px;
+  font-weight: 600;
+  cursor: pointer;
+  ${({ award }) =>
+    award &&
     css`
-      color: ${({ theme }) => theme.gray200};
-    `};
+      color: ${({ theme }) => theme.fontColor};
+    `}
 `
 
 const WrapButton = (Icon: IconType) => (props: ButtonIconProps) => (
-  <StyledButtonIcon variant={props.variant} award={props.award}>
+  <StyledButtonIcon award={props.award}>
     <Icon {...props} />
     {props.text}
   </StyledButtonIcon>

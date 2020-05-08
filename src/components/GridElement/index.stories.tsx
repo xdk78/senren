@@ -26,37 +26,31 @@ export const GridElementStory = () => {
           src={
             'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
           }
-          variant="dark"
         ></GridElement>
         <GridElement
           src={
             'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
           }
-          variant="dark"
         ></GridElement>
         <GridElement
           src={
             'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
           }
-          variant="dark"
         ></GridElement>
         <GridElement
           src={
             'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
           }
-          variant="dark"
         ></GridElement>
         <GridElement
           src={
             'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
           }
-          variant="dark"
         ></GridElement>
         <GridElement
           src={
             'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
           }
-          variant="dark"
         ></GridElement>
       </DarkWrapper>
     </>
@@ -76,7 +70,6 @@ export const SmallGridElementStory = () => {
             'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
           }
           small
-          variant="dark"
         ></GridElement>
       </DarkWrapper>
     </>

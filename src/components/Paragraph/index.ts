@@ -1,15 +1,7 @@
-import styled, { css } from '../../styled-components'
+import styled from '../../styled-components'
 
-type HeadingProps = {
-  variant?: 'light' | 'dark'
-}
-
-const Paragraph = styled.p<HeadingProps>`
-  color: ${({ theme }) => theme.black};
-  ${({ variant }) =>
-    variant === 'dark' &&
-    css`
-      color: ${({ theme }) => theme.white};
-    `}
+const Paragraph = styled.p`
+  color: ${({ theme }) => theme.fontColor};
+  margin-bottom: 25px;
 `
 export default Paragraph
