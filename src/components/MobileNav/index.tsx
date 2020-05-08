@@ -17,7 +17,8 @@ const NavWrapper = styled.div`
   grid-template-columns: repeat(5, 0.2fr);
   justify-items: center;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  z-index: 99999;
 `
 
 const IconWrapper = styled.div`

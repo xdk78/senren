@@ -23,6 +23,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   background-size: cover;
   background-repeat: no-repeat;
 `
+
 const StyledInnerWrapper = styled.div`
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(25px);

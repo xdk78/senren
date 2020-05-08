@@ -16,7 +16,7 @@ export const normalButton = () => {
     <>
       <Button>Sign in</Button>
       <DarkWrapper>
-        <Button variant="dark">Register</Button>
+        <Button>Register</Button>
       </DarkWrapper>
     </>
   )
@@ -27,9 +27,7 @@ export const largeButton = () => {
     <>
       <Button large>Sign in</Button>
       <DarkWrapper>
-        <Button large variant="dark">
-          Register
-        </Button>
+        <Button large>Register</Button>
       </DarkWrapper>
     </>
   )

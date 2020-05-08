@@ -22,7 +22,7 @@ const Input = styled.input<InputProps>`
     css`
       font-size: 23px;
       width: 100%;
-      height: 90px;
+      height: 56px;
       background-color: ${({ theme }) => theme.inputs.largeInput};
       &::placeholder {
         font-weight: bold;

@@ -7,16 +7,18 @@ import FeaturedGridElement from '../components/FeaturedGridElement'
 import GridElement from '../components/GridElement'
 import ListElement from '../components/ListElement'
 import Input from '../components/Input'
+import { Spacing, DeviceWidth } from '../themes/constants'
 
 const StyledWrapper = styled.div`
   height: 100%;
-  padding: 100px;
+  padding: ${Spacing.large}px;
   max-width: 1400px;
-  @media (max-width: 1000px) {
+  @media (max-width: ${DeviceWidth.mobile}px) {
     width: 100%;
-    padding: 10px;
+    padding: ${Spacing.small}px;
   }
 `
+
 const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

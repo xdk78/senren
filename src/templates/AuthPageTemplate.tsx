@@ -1,21 +1,25 @@
 import React from 'react'
 import styled from '../styled-components'
+import { DeviceWidth } from '../themes/constants'
 
 type AuthPageTemplateProps = {
-  children: any
+  children?: JSX.Element | JSX.Element[]
 }
 
 const StyledWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-template-rows: 100vh;
-  grid-gap: 50px;
+  grid-gap: 48px;
   justify-items: center;
   align-items: center;
   text-align: center;
+
   grid-auto-flow: dense;
   background-color: ${({ theme }) => theme.auth.background};
-  @media (max-width: 1055px) {
+
+  @media (max-width: ${DeviceWidth.mobile}px) {
     svg:only-of-type {
       display: none;
     }

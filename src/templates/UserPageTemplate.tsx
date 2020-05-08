@@ -3,6 +3,7 @@ import styled, { css } from '../styled-components'
 import Navbar from '../components/Navbar'
 import { useMediaQuery } from 'react-responsive'
 import MobileNav from '../components/MobileNav'
+import { DeviceWidth } from '../themes/constants'
 
 type UserPageTemplateProps = {
   children: any
@@ -25,7 +26,9 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
 `
 
 const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
+  const isTabletOrMobile = useMediaQuery({
+    query: `(max-width: ${DeviceWidth.mobile})`,
+  })
   return (
     <>
       {isTabletOrMobile ? <MobileNav /> : <Navbar isLoggedIn={false} />}
