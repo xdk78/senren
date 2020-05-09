@@ -15,7 +15,7 @@ type StyledWrapperProps = {
 const StyledWrapper = styled.div<StyledWrapperProps>`
   border-radius: 20px;
   max-width: 1200px;
-  height: 570px;
+  height: 470px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -28,8 +28,8 @@ const StyledInnerWrapper = styled.div`
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(25px);
   border-radius: 0px 0px 20px 20px;
-  padding: 25px;
-  padding-top: 15px;
+  padding: 20px;
+  padding-top: 10px;
 `
 
 const StyledHeading = styled.h3`

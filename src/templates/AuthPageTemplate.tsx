@@ -9,7 +9,7 @@ type AuthPageTemplateProps = {
 const StyledWrapper = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   grid-template-rows: 100vh;
   grid-gap: 48px;
   justify-items: center;

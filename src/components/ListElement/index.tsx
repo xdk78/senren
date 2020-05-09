@@ -16,9 +16,9 @@ type ListElementProps = {
 
 const StyledWrapper = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto auto auto auto;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `
 const StyledInnerWrapper = styled.div`
   display: flex;
@@ -29,19 +29,25 @@ const StyledInnerWrapper = styled.div`
   color: ${({ theme }) => theme.fontColor};
 `
 const SecondInnerWraper = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding-bottom: 20px;
+  margin: 15px;
+  a {
+    margin: 0px;
+  }
   @media (max-width: 1000px) {
     display: none;
   }
+`
+const StyledHeading = styled(Heading)`
+  margin: 0px;
+`
+const StyledParagraph = styled(Paragraph)`
+  margin: 0px;
 `
 const StyledRating = styled.p`
   color: ${({ theme }) => theme.fontColor};
   font-size: 24px;
   font-weight: 600;
-  padding: 37px;
+  /* padding: 37px; */
 `
 
 const ListElement = ({
@@ -55,8 +61,8 @@ const ListElement = ({
     <StyledWrapper>
       <GridElement src={image} small />
       <StyledInnerWrapper>
-        <Heading>{title}</Heading>
-        <Paragraph>{description}</Paragraph>
+        <StyledHeading>{title}</StyledHeading>
+        <StyledParagraph>{description}</StyledParagraph>
       </StyledInnerWrapper>
       <SecondInnerWraper>
         {WrapButton(FaAward)({ text: award })}

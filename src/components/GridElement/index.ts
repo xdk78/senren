@@ -8,7 +8,7 @@ const GridElement = styled.img<GridElementProps>`
   border-radius: 25px;
   /* box-shadow: 2px 2px 80px #d1d1d1; */
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   ${({ small }) =>
     small &&

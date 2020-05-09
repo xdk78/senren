@@ -11,7 +11,8 @@ type FormProps = {
 const StyledWrapper = styled.div<StyledWrapperProps>`
   display: flex;
   flex-direction: column;
-  max-width: 550px;
+  width: 80%;
+  margin: 20px;
   padding: 60px 20px;
   border-radius: 23px;
   justify-items: stretch;

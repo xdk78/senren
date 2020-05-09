@@ -20,13 +20,13 @@ const Input = styled.input<InputProps>`
   ${({ large }) =>
     large &&
     css`
-      font-size: 23px;
+      font-size: 15px;
       width: 100%;
       height: 56px;
       background-color: ${({ theme }) => theme.inputs.largeInput};
       &::placeholder {
         font-weight: bold;
-        font-size: 19px;
+        font-size: 13px;
       }
     `}
 `
