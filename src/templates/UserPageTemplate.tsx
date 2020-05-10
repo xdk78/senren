@@ -27,7 +27,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
 
 const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
   const isTabletOrMobile = useMediaQuery({
-    query: `(max-width: ${DeviceWidth.mobile})`,
+    query: `(max-width: ${DeviceWidth.mobile}px)`,
   })
   return (
     <>
