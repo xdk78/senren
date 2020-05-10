@@ -3,6 +3,7 @@ export default interface ThemeInterface {
   background: string
   fontColor: string
   buttonFont: string
+  boxShadow: string
   inputs: {
     input: string
     largeInput: string
@@ -22,5 +23,10 @@ export default interface ThemeInterface {
     background: string
     iconBackground: string
     icon: string
+  }
+  footer: {
+    background: string
+    accent: string
+    fontColor: string
   }
 }

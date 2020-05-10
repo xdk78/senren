@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import styled from '../../styled-components'
+import styled, { css } from '../../styled-components'
 import WrapButton from '../ButtonIcon'
 import Button from '../Button'
 import {
@@ -17,9 +17,13 @@ type indexProps = {
   username?: string
   userEmail?: string
   isLoggedIn: boolean
+  visible?: boolean
+}
+type NavWrapperProps = {
+  visible?: boolean
 }
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.div<NavWrapperProps>`
   background-color: ${({ theme }) => theme.nav.background};
   width: 320px;
   height: 100vh;
@@ -27,6 +31,12 @@ const NavWrapper = styled.div`
   flex-direction: column;
   justify-content: stretch;
   position: fixed;
+  transition: 0.3s;
+  ${({ visible }) =>
+    visible &&
+    css`
+      transform: translateX(-100%);
+    `}
 `
 const TopWrapper = styled.div`
   padding: 25px;
@@ -37,9 +47,9 @@ const IconsWrapper = styled.div`
   flex: 1;
 `
 
-const index = ({ username, userEmail, isLoggedIn }: indexProps) => {
+const index = ({ username, userEmail, isLoggedIn, visible }: indexProps) => {
   return (
-    <NavWrapper>
+    <NavWrapper visible={visible}>
       {isLoggedIn ? (
         <TopWrapper>
           <h3>{username}</h3>

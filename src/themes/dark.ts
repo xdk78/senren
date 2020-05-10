@@ -5,6 +5,7 @@ const DarkTheme: ThemeInterface = {
   background: '#000000',
   fontColor: '#FFFFFF',
   buttonFont: '#FFFFFF',
+  boxShadow: '',
   inputs: {
     input: '#01142F',
     largeInput: '#2F2F2F',
@@ -24,6 +25,11 @@ const DarkTheme: ThemeInterface = {
     background: '#2F2F2F',
     iconBackground: '#404040',
     icon: '#ABABAB',
+  },
+  footer: {
+    background: '#2F2F2F',
+    accent: '#5199FF',
+    fontColor: '#9E9E9E',
   },
 }
 

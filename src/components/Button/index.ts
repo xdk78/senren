@@ -15,6 +15,7 @@ const Button = styled.button<ButtonProps>`
   height: 49px;
   cursor: pointer;
   margin: 10px;
+  box-shadow: ${({ theme }) => theme.boxShadow};
 
   ${({ large }) =>
     large &&

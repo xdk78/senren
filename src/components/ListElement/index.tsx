@@ -47,6 +47,7 @@ const StyledRating = styled.p`
   color: ${({ theme }) => theme.fontColor};
   font-size: 24px;
   font-weight: 600;
+  text-align: right;
   /* padding: 37px; */
 `
 

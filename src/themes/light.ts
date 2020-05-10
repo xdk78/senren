@@ -5,6 +5,7 @@ const LightTheme: ThemeInterface = {
   background: '#FFFFFF',
   fontColor: '#000000',
   buttonFont: '#FFFFFF',
+  boxShadow: '4px 4px 25px rgba(81, 153, 255, 0.4)',
   inputs: {
     input: '#FFFFFF',
     largeInput: '#EFEFEF',
@@ -24,6 +25,11 @@ const LightTheme: ThemeInterface = {
     background: '#FFFFFF',
     iconBackground: '#F6F6F6',
     icon: '#5199FF',
+  },
+  footer: {
+    background: '#2F2F2F',
+    accent: '#5199FF',
+    fontColor: '#9E9E9E',
   },
 }
 
