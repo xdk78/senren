@@ -1,19 +1,18 @@
 import React from 'react'
-import UserPageTemplate, {
-  StyledPageWrapper,
-} from '../templates/UserPageTemplate'
+import UserPageTemplate, { StyledPageWrapper } from '../templates/PageTemplate'
 import Heading from '../components/Heading'
 import Paragraph from '../components/Paragraph'
 import FeaturedGridElement from '../components/FeaturedGridElement'
 import GridElement from '../components/GridElement'
 import styled from '../styled-components'
-// import ListElement from '../components/ListElement'
 import Input from '../components/Input'
+import { fadeInUp, stagger } from '../utils/animations'
+import { motion } from 'framer-motion'
 
-const GridWrapper = styled.div`
+const GridWrapper = styled(motion.div)`
   padding-top: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 20px;
   grid-auto-flow: dense;
 `
@@ -75,10 +74,16 @@ const Index = () => {
           description="It was directed by Sam Raimi from a screenplay by Raimi, his older brother Ivan and Alvin Sargent. It is the third and final installment in Raimi's Spider-Man trilogy."
           about="Action Movie"
         />
-        <GridWrapper>
+        <GridWrapper
+          variants={stagger}
+          initial="initial"
+          animate="animate"
+          exit={{ opacity: 0 }}
+        >
           {Data2.map((item) => (
             <GridElement
               key={item.id}
+              variants={fadeInUp}
               title={item.title}
               content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi amet deserunt aliquid id hic, facilis fuga quia ut dolorem optio exercitationem vel ipsum maxime minus magni in nihil inventore saepe."
               src={item.src}

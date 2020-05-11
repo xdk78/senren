@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive'
 import MobileNav from '../components/MobileNav'
 import { Spacing, DeviceWidth } from '../themes/constants'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
+
 type UserPageTemplateProps = {
   children: any
 }
@@ -21,7 +22,12 @@ type StyledButtonToggle = {
 export const StyledPageWrapper = styled.div`
   height: 100%;
   padding: ${Spacing.large}px;
-  max-width: 1400px;
+  max-width: 1100px;
+
+  @media (min-width: 2160px) {
+    max-width: 1400px;
+  }
+
   @media (max-width: ${DeviceWidth.mobile}px) {
     width: 100%;
     padding: ${Spacing.small}px;
@@ -85,6 +91,7 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
       ) : (
         <Navbar visible={isHidden} isLoggedIn={false} />
       )}
+
       <StyledWrapper visible={isHidden} responsive={isTabletOrMobile}>
         <StyledToggleButton
           whileTap={{ scale: 0.9 }}
@@ -93,6 +100,7 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
         >
           {isHidden ? <FaArrowRight /> : <FaArrowLeft />}
         </StyledToggleButton>
+
         {children}
       </StyledWrapper>
       <Footer />

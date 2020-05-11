@@ -1,7 +1,5 @@
 import React from 'react'
-import UserPageTemplate, {
-  StyledPageWrapper,
-} from '../templates/UserPageTemplate'
+import PageTemplate, { StyledPageWrapper } from '../templates/PageTemplate'
 import Heading from '../components/Heading'
 import Paragraph from '../components/Paragraph'
 import FeaturedGridElement from '../components/FeaturedGridElement'
@@ -10,7 +8,7 @@ import Input from '../components/Input'
 
 const Index = () => {
   return (
-    <UserPageTemplate>
+    <PageTemplate>
       <StyledPageWrapper>
         <Heading>Movies</Heading>
         <Paragraph>Discover your new favourite movie</Paragraph>
@@ -59,7 +57,7 @@ const Index = () => {
           image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets1.ignimgs.com%2F2019%2F05%2F06%2Fchernobyl-blogroll-1557167369830_1280w.jpg&f=1&nofb=1"
         />
       </StyledPageWrapper>
-    </UserPageTemplate>
+    </PageTemplate>
   )
 }
 
