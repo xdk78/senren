@@ -1,38 +1,72 @@
 import React from 'react'
-import styled from '../styled-components'
-import UserPageTemplate from '../templates/UserPageTemplate'
+import UserPageTemplate, {
+  StyledPageWrapper,
+} from '../templates/UserPageTemplate'
 import Heading from '../components/Heading'
 import Paragraph from '../components/Paragraph'
 import FeaturedGridElement from '../components/FeaturedGridElement'
 import GridElement from '../components/GridElement'
-import ListElement from '../components/ListElement'
+import styled from '../styled-components'
+// import ListElement from '../components/ListElement'
 import Input from '../components/Input'
-import { Spacing, DeviceWidth } from '../themes/constants'
-
-const StyledWrapper = styled.div`
-  height: 100%;
-  padding: ${Spacing.large}px;
-  max-width: 1400px;
-  @media (max-width: ${DeviceWidth.mobile}px) {
-    width: 100%;
-    padding: ${Spacing.small}px;
-  }
-`
 
 const GridWrapper = styled.div`
+  padding-top: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  margin-top: 20px;
-  margin-bottom: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
-  @media (max-width: 1200px) {
-  }
+  grid-auto-flow: dense;
 `
+
+const Data2 = [
+  {
+    id: 1,
+    title: 'Westworld',
+    src:
+      'https://images.unsplash.com/photo-1589023640583-653a7ac888ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80',
+  },
+  {
+    id: 2,
+    title: 'Mr. Robot',
+    src:
+      'https://images.unsplash.com/photo-1588814547572-13d8fb9bda3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80',
+  },
+  {
+    id: 3,
+    title: 'Riverdale',
+    src:
+      'https://images.unsplash.com/photo-1589141333995-64e3ea565870?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+  },
+  {
+    id: 4,
+    title: 'Riverdale',
+    src:
+      'https://images.unsplash.com/photo-1589141333995-64e3ea565870?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+  },
+  {
+    id: 5,
+    title: 'Breaking Bad',
+    src:
+      'https://images.unsplash.com/photo-1589185460294-b6bb2070099f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+  },
+  {
+    id: 6,
+    title: 'Breaking Bad',
+    src:
+      'https://images.unsplash.com/photo-1589185460294-b6bb2070099f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+  },
+  {
+    id: 7,
+    title: 'Breaking Bad',
+    src:
+      'https://images.unsplash.com/photo-1589185460294-b6bb2070099f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+  },
+]
 
 const Index = () => {
   return (
     <UserPageTemplate>
-      <StyledWrapper>
+      <StyledPageWrapper>
         <Heading>Explore</Heading>
         <Paragraph>Discover your new favourite show</Paragraph>
         <Input large placeholder="Find Movies, TV Shows and more..." />
@@ -45,75 +79,18 @@ const Index = () => {
           about="Action Movie"
         />
         <GridWrapper>
-          <GridElement
-            src={
-              'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
-            }
-          ></GridElement>
-          <GridElement
-            src={
-              'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
-            }
-          ></GridElement>
-          <GridElement
-            src={
-              'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
-            }
-          ></GridElement>
-          <GridElement
-            src={
-              'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
-            }
-          ></GridElement>
-          <GridElement
-            src={
-              'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
-            }
-          ></GridElement>
-          <GridElement
-            src={
-              'https://static.episodate.com/images/tv-show/thumbnail/32157.jpg'
-            }
-          ></GridElement>
+          {Data2.map((item) => (
+            <GridElement
+              key={item.id}
+              title={item.title}
+              content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi amet deserunt aliquid id hic, facilis fuga quia ut dolorem optio exercitationem vel ipsum maxime minus magni in nihil inventore saepe."
+              src={item.src}
+            />
+          ))}
         </GridWrapper>
         <Heading>Top 100</Heading>
         <Paragraph>Most popular TV Shows and Movies</Paragraph>
-        <ListElement
-          title="Chernobyl"
-          description="2019"
-          award="Won 2 Golden Globes. Another 54 wins & 42 nominations."
-          rating="4/5"
-          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets1.ignimgs.com%2F2019%2F05%2F06%2Fchernobyl-blogroll-1557167369830_1280w.jpg&f=1&nofb=1"
-        />
-        <ListElement
-          title="Chernobyl"
-          description="2019"
-          award="Won 2 Golden Globes. Another 54 wins & 42 nominations."
-          rating="4/5"
-          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets1.ignimgs.com%2F2019%2F05%2F06%2Fchernobyl-blogroll-1557167369830_1280w.jpg&f=1&nofb=1"
-        />
-        <ListElement
-          title="Chernobyl"
-          description="2019"
-          award="Won 2 Golden Globes. Another 54 wins & 42 nominations."
-          rating="4/5"
-          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets1.ignimgs.com%2F2019%2F05%2F06%2Fchernobyl-blogroll-1557167369830_1280w.jpg&f=1&nofb=1"
-        />
-        <ListElement
-          title="Chernobyl"
-          description="2019"
-          award="Won 2 Golden Globes. Another 54 wins & 42 nominations."
-          rating="4/5"
-          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets1.ignimgs.com%2F2019%2F05%2F06%2Fchernobyl-blogroll-1557167369830_1280w.jpg&f=1&nofb=1"
-        />
-        <ListElement
-          title="Chernobyl"
-          description="2019"
-          award="Won 2 Golden Globes. Another 54 wins & 42 nominations."
-          rating="4/5"
-          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets1.ignimgs.com%2F2019%2F05%2F06%2Fchernobyl-blogroll-1557167369830_1280w.jpg&f=1&nofb=1"
-        />
-      </StyledWrapper>
+      </StyledPageWrapper>
     </UserPageTemplate>
   )
 }

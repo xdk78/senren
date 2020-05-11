@@ -12,6 +12,7 @@
     "lint-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "framer-motion": "^1.10.3",
     "next": "^9.3.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -29,4 +29,10 @@ export default interface ThemeInterface {
     accent: string
     fontColor: string
   }
+  gridElements: {
+    fontColor: string
+    background: string
+    paragraphColor: string
+    boxshadow: string
+  }
 }

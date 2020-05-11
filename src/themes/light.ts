@@ -31,6 +31,12 @@ const LightTheme: ThemeInterface = {
     accent: '#5199FF',
     fontColor: '#9E9E9E',
   },
+  gridElements: {
+    fontColor: '#FFFFFF',
+    background: '#fdfdfd',
+    paragraphColor: '#000000',
+    boxshadow: '4px 4px 25px rgba(81, 153, 255, 0.4)',
+  },
 }
 
 export default LightTheme

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '../../styled-components'
-import GridElement from '../GridElement'
+import ListElementThumbnail from '../ListElementThumbnail'
 import Heading from '../Heading'
 import Paragraph from '../Paragraph'
 import WrapButton from '../ButtonIcon'
@@ -48,7 +48,6 @@ const StyledRating = styled.p`
   font-size: 24px;
   font-weight: 600;
   text-align: right;
-  /* padding: 37px; */
 `
 
 const ListElement = ({
@@ -60,7 +59,7 @@ const ListElement = ({
 }: ListElementProps) => {
   return (
     <StyledWrapper>
-      <GridElement src={image} small />
+      <ListElementThumbnail src={image} />
       <StyledInnerWrapper>
         <StyledHeading>{title}</StyledHeading>
         <StyledParagraph>{description}</StyledParagraph>

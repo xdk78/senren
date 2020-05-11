@@ -68,8 +68,8 @@ const index = ({ username, userEmail, isLoggedIn, visible }: indexProps) => {
       )}
       <IconsWrapper>
         <Link href="/">{WrapButton(FaSearch)({ text: 'Explore' })}</Link>
-        <Link href="/">{WrapButton(FaVideo)({ text: 'Movies' })}</Link>
-        <Link href="/">{WrapButton(FaFilm)({ text: 'TV Shows' })}</Link>
+        <Link href="/movies">{WrapButton(FaVideo)({ text: 'Movies' })}</Link>
+        <Link href="/tvshows">{WrapButton(FaFilm)({ text: 'TV Shows' })}</Link>
         <Link href="/">{WrapButton(FaPhotoVideo)({ text: 'Watchlist' })}</Link>
         <Link href="/">{WrapButton(FaStar)({ text: 'Favourite' })}</Link>
         <Link href="/">{WrapButton(FaSlidersH)({ text: 'Settings' })}</Link>

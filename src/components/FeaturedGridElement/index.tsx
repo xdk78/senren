@@ -16,12 +16,14 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   border-radius: 20px;
   max-width: 1400px;
   height: 500px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   background-image: ${({ image }) => `url(${image})`};
   background-size: cover;
   background-repeat: no-repeat;
+  text-align: left;
 `
 
 const StyledInnerWrapper = styled.div`

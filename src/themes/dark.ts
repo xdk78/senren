@@ -31,6 +31,12 @@ const DarkTheme: ThemeInterface = {
     accent: '#5199FF',
     fontColor: '#9E9E9E',
   },
+  gridElements: {
+    fontColor: '#FFFFFF',
+    background: '#1c1c1e',
+    paragraphColor: '#FFFFFF',
+    boxshadow: '',
+  },
 }
 
 export default DarkTheme
