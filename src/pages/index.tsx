@@ -23,43 +23,40 @@ const Data2 = [
     id: 1,
     title: 'Westworld',
     src:
-      'https://images.unsplash.com/photo-1589023640583-653a7ac888ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80',
+      'https://zagrano.pl/wp-content/uploads/2020/03/premiera-3-sezonu-westworld-d.jpg',
   },
   {
     id: 2,
     title: 'Mr. Robot',
-    src:
-      'https://images.unsplash.com/photo-1588814547572-13d8fb9bda3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80',
+    src: 'https://cont2.naekranie.pl/media/cache/amp/2016/06/mrrobot1.jpg',
   },
   {
     id: 3,
     title: 'Riverdale',
-    src:
-      'https://images.unsplash.com/photo-1589141333995-64e3ea565870?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+    src: 'https://bimg.wprost.pl/_thumb/b1/5f/63873339373cb16d04797eaace72.png',
   },
   {
     id: 4,
-    title: 'Riverdale',
+    title: 'Atypical',
     src:
-      'https://images.unsplash.com/photo-1589141333995-64e3ea565870?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+      'https://occ-0-1068-1723.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABQ6gXQ6wAffh03gEh9UvQcGcHKyYnrSjGy6bdQSqYxlP-7hDCBizVylgfkeh6gSrqr3afGCInQsnxUN4U4GNzziK3Vt4.jpg?r=f01',
   },
   {
     id: 5,
     title: 'Breaking Bad',
     src:
-      'https://images.unsplash.com/photo-1589185460294-b6bb2070099f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+      'https://ocs-pl.oktawave.com/v1/AUTH_2887234e-384a-4873-8bc5-405211db13a2/splay/2019/09/breaking-bad-el-camino.jpg',
   },
   {
     id: 6,
-    title: 'Breaking Bad',
-    src:
-      'https://images.unsplash.com/photo-1589185460294-b6bb2070099f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+    title: 'Better call saul',
+    src: 'https://img.ppe.pl/upload/news/14/50/13/800/380/1450136469.jpg',
   },
   {
     id: 7,
-    title: 'Breaking Bad',
+    title: 'Ozark',
     src:
-      'https://images.unsplash.com/photo-1589185460294-b6bb2070099f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+      'https://occ-0-1068-1722.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABSLEghUfo8hb66GpyRCSgcABnbg22YVprjL_GVzQoGV9mYzuOgjLhVSxTUxiSQjBBYHuSqSdF4FeDepl_8ukfXx39ulx.jpg?r=aa0',
   },
 ]
 

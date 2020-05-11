@@ -1,10 +1,11 @@
 import styled, { css } from '../../styled-components'
+import { motion } from 'framer-motion'
 
-type ButtonProps = {
+type StyledButtonProps = {
   large?: boolean
 }
 
-const Button = styled.button<ButtonProps>`
+const Button = styled(motion.button)<StyledButtonProps>`
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.buttonFont};
   outline: 0px;
@@ -27,4 +28,5 @@ const Button = styled.button<ButtonProps>`
       background-color: ${({ theme }) => theme.auth.button};
     `}
 `
+
 export default Button

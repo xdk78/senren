@@ -130,7 +130,9 @@ const GridElement = ({ src, title, content }: GridElementProps) => {
           <Content content={content} />
 
           <StyledButtonWrapper>
-            <Button>View More</Button>
+            <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
+              View More
+            </Button>
           </StyledButtonWrapper>
         </StyledCardContainer>
       </StyledInnerWrapper>

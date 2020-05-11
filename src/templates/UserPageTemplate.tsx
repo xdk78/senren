@@ -86,7 +86,11 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
         <Navbar visible={isHidden} isLoggedIn={false} />
       )}
       <StyledWrapper visible={isHidden} responsive={isTabletOrMobile}>
-        <StyledToggleButton responsive={isTabletOrMobile} onClick={ToggleNav}>
+        <StyledToggleButton
+          whileTap={{ scale: 0.9 }}
+          responsive={isTabletOrMobile}
+          onClick={ToggleNav}
+        >
           {isHidden ? <FaArrowRight /> : <FaArrowLeft />}
         </StyledToggleButton>
         {children}

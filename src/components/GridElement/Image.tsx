@@ -19,6 +19,8 @@ const StyledImageContainer = styled(motion.div)<StyledImageContainerProps>`
       height: 300px;
     `}
 `
+
+const StyledImage = styled(motion.img)``
 export const Image = ({ isSelected, pointOfInterest = 0, src }) => {
   const inverted = useInvertedScale()
 
@@ -27,7 +29,7 @@ export const Image = ({ isSelected, pointOfInterest = 0, src }) => {
       isSelected={isSelected}
       style={{ ...inverted, originX: 0, originY: 0 }}
     >
-      <motion.img
+      <StyledImage
         src={src}
         alt=""
         initial={false}
