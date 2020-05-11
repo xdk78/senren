@@ -7,6 +7,7 @@ import { createGlobalStyle, ThemeProvider } from '../styled-components'
 import { useDarkMode } from '../hooks/useDarkMode'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
+import { AnimatePresence } from 'framer-motion'
 
 const GlobalStyle = createGlobalStyle`${globalStyle}`
 
@@ -25,7 +26,9 @@ function MyApp({ Component, pageProps, store }) {
               rel="stylesheet"
             ></link>
           </Head>
-          <Component {...pageProps} />
+          <AnimatePresence exitBeforeEnter>
+            <Component {...pageProps} />
+          </AnimatePresence>
         </>
       </ThemeProvider>
     </Provider>

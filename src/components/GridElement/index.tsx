@@ -2,25 +2,29 @@ import React, { useState, useRef } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
 import { useInvertedBorderRadius } from '../../utils/use-inverted-border-radius'
 import styled, { css } from '../../styled-components'
-import { openSpring, closeSpring } from './animations'
+import { openSpring, closeSpring } from '../../utils/animations'
 import { useScrollConstraints } from '../../utils/use-scroll-constraints'
 import { useWheelScroll } from '../../utils/use-wheel-scroll'
 import { Title } from './Title'
 import { Content } from './Content'
 import { Image } from './Image'
 import Button from '../Button'
+
 type GridElementProps = {
   small?: boolean
   src?: string
   title?: string
   content?: string
+  variants?: any
+  initial?: any
+  animate?: any
 }
 
 type WrapperProps = {
   isSelected: boolean
 }
 
-const StyledCard = styled.div`
+const StyledCard = styled(motion.div)`
   height: 300px;
   :nth-child(4n + 1),
   :nth-child(4n + 4) {
@@ -87,7 +91,14 @@ const StyledButtonWrapper = styled.div`
 
 const dismissDistance = 100
 
-const GridElement = ({ src, title, content }: GridElementProps) => {
+const GridElement = ({
+  src,
+  title,
+  content,
+  variants,
+  initial,
+  animate,
+}: GridElementProps) => {
   const gridRef = useRef(null)
   const [isSelected, setSelection] = useState<boolean>(false)
   const y = useMotionValue(0)
@@ -111,7 +122,12 @@ const GridElement = ({ src, title, content }: GridElementProps) => {
   useWheelScroll(containerRef, y, constraints, checkSwipeToDismiss, isSelected)
 
   return (
-    <StyledCard ref={containerRef}>
+    <StyledCard
+      variants={variants}
+      initial={initial}
+      animate={animate}
+      ref={containerRef}
+    >
       <Overlay setSelection={setSelection} isSelected={isSelected} />
       <StyledInnerWrapper isSelected={isSelected}>
         <StyledCardContainer

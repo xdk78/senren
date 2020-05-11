@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from '../../styled-components'
 import { motion, useInvertedScale } from 'framer-motion'
-import { closeSpring } from './animations'
+import { closeSpring } from '../../utils/animations'
 
 type StyledImageContainerProps = {
   isSelected?: boolean
