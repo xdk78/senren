@@ -26,22 +26,15 @@ type WrapperProps = {
 
 const StyledCard = styled(motion.div)`
   height: 300px;
-  :nth-child(4n + 1),
-  :nth-child(4n + 4) {
-    grid-column: span 2;
-  }
   @media (max-width: 1500px) {
-    :nth-child(4n + 1),
-    :nth-child(4n + 4) {
-      grid-column: span 1;
-    }
+    /* grid-column: span 1; */
   }
 `
 
 const StyledInnerWrapper = styled.div<WrapperProps>`
   width: 100%;
   height: 100%;
-  display: grid;
+  /* display: grid; */
   pointer-events: none;
   align-items: center;
   ${({ isSelected }) =>

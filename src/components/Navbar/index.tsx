@@ -59,14 +59,18 @@ const index = ({ username, userEmail, isLoggedIn, visible }: indexProps) => {
       ) : (
         <TopWrapper>
           <Link href="/login">
-            <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
-              Log in
-            </Button>
+            <a>
+              <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
+                Log in
+              </Button>
+            </a>
           </Link>
           <Link href="/register">
-            <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
-              Register
-            </Button>
+            <a>
+              <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
+                Register
+              </Button>
+            </a>
           </Link>
         </TopWrapper>
       )}

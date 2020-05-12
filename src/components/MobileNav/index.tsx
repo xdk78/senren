@@ -22,14 +22,17 @@ const NavWrapper = styled.div`
 `
 
 const IconWrapper = styled.div`
-  padding: 20px;
+  padding: 12px;
   color: ${({ theme }) => theme.mobileNav.icon};
   border-radius: 50%;
-  width: 60px;
+  width: 40px;
   align-self: center;
-  height: 60px;
-  margin: 15px;
+  height: 40px;
+  margin: 15px 0 25px 0;
   background-color: ${({ theme }) => theme.mobileNav.iconBackground};
+`
+const StyledLink = styled.a`
+  color: ${({ theme }) => theme.mobileNav.icon};
 `
 
 const MobileNav = () => {
@@ -37,27 +40,37 @@ const MobileNav = () => {
     <NavWrapper>
       <IconWrapper>
         <Link href="/">
-          <FaSearch />
+          <StyledLink>
+            <FaSearch />
+          </StyledLink>
         </Link>
       </IconWrapper>
       <IconWrapper>
         <Link href="/movies">
-          <FaFilm />
+          <StyledLink>
+            <FaFilm />
+          </StyledLink>
         </Link>
       </IconWrapper>
       <IconWrapper>
         <Link href="/">
-          <FaPhotoVideo />
+          <StyledLink>
+            <FaPhotoVideo />
+          </StyledLink>
         </Link>
       </IconWrapper>
       <IconWrapper>
         <Link href="/">
-          <FaStar />
+          <StyledLink>
+            <FaStar />
+          </StyledLink>
         </Link>
       </IconWrapper>
       <IconWrapper>
         <Link href="/">
-          <FaSlidersH />
+          <StyledLink>
+            <FaSlidersH />
+          </StyledLink>
         </Link>
       </IconWrapper>
     </NavWrapper>
