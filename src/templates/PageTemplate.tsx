@@ -82,8 +82,10 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
     setVisibility(!isHidden)
   }
   const isTabletOrMobile = useMediaQuery({
-    query: `(max-width: ${DeviceWidth.mobile}px)`,
+    query: `(max-width: ${DeviceWidth.mobile}px) and (orientation: portrait) and (min-device-width: 200px) 
+    and (max-device-width: 748px)`,
   })
+  console.log(isTabletOrMobile)
   return (
     <>
       {isTabletOrMobile ? (

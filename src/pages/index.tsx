@@ -15,6 +15,9 @@ const GridWrapper = styled(motion.div)`
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 20px;
   grid-auto-flow: dense;
+  /* @media (max-width: 800px) {
+    grid-gap: 80px;
+  } */
 `
 
 const Data2 = [
