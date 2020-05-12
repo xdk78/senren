@@ -25,7 +25,7 @@ type NavWrapperProps = {
 
 const NavWrapper = styled.div<NavWrapperProps>`
   background-color: ${({ theme }) => theme.nav.background};
-  width: 320px;
+  max-width: 320px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,9 @@ const NavWrapper = styled.div<NavWrapperProps>`
     css`
       transform: translateX(-100%);
     `}
+  @media (max-width: 900px) {
+    display: none;
+  }
 `
 const TopWrapper = styled.div`
   padding: 25px;

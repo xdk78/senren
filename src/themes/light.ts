@@ -5,7 +5,7 @@ const LightTheme: ThemeInterface = {
   background: '#FFFFFF',
   fontColor: '#000000',
   buttonFont: '#FFFFFF',
-  boxShadow: '4px 4px 25px rgba(81, 153, 255, 0.4)',
+  boxShadow: '',
   inputs: {
     input: '#FFFFFF',
     largeInput: '#EFEFEF',
@@ -35,7 +35,7 @@ const LightTheme: ThemeInterface = {
     fontColor: '#FFFFFF',
     background: '#fdfdfd',
     paragraphColor: '#000000',
-    boxshadow: '4px 4px 25px rgba(81, 153, 255, 0.4)',
+    boxshadow: '',
   },
 }
 

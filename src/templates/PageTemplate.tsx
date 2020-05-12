@@ -3,7 +3,6 @@ import styled, { css } from '../styled-components'
 import Navbar from '../components/Navbar'
 import Button from '../components/Button'
 import Footer from '../components/Footer'
-import { useMediaQuery } from 'react-responsive'
 import MobileNav from '../components/MobileNav'
 import { Spacing, DeviceWidth } from '../themes/constants'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
@@ -12,11 +11,7 @@ type UserPageTemplateProps = {
   children: any
 }
 type StyledWrapperProps = {
-  responsive: boolean
   visible?: boolean
-}
-type StyledButtonToggle = {
-  responsive: boolean
 }
 
 export const StyledPageWrapper = styled.div`
@@ -47,33 +42,28 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   transition: 0.3s;
   display: grid;
   justify-content: center;
-  ${({ responsive }) =>
-    responsive
-      ? css`
-          padding-left: 0px;
-          width: 100vw;
-        `
-      : css`
-          padding-left: 320px;
-        `}
+  @media (max-width: 900px) {
+    padding: 0;
+  }
+  @media (min-width: 900px) {
+    padding-left: 320px;
+  }
   ${({ visible }) =>
     visible &&
     css`
       padding: 0 150px 0 150px;
     `}
 `
-const StyledToggleButton = styled(Button)<StyledButtonToggle>`
+const StyledToggleButton = styled(Button)`
   position: fixed;
   bottom: 40px;
   left: 40px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  ${({ responsive }) =>
-    responsive &&
-    css`
-      display: none;
-    `};
+  @media (max-width: 900px) {
+    display: none;
+  }
 `
 
 const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
@@ -81,28 +71,14 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
   const ToggleNav = () => {
     setVisibility(!isHidden)
   }
-  const isTabletOrMobile = useMediaQuery({
-    query: `(max-width: ${DeviceWidth.mobile}px) and (orientation: portrait) and (min-device-width: 200px) 
-    and (max-device-width: 748px)`,
-  })
-  console.log(isTabletOrMobile)
   return (
     <>
-      {isTabletOrMobile ? (
-        <MobileNav />
-      ) : (
-        <Navbar visible={isHidden} isLoggedIn={false} />
-      )}
-
-      <StyledWrapper visible={isHidden} responsive={isTabletOrMobile}>
-        <StyledToggleButton
-          whileTap={{ scale: 0.9 }}
-          responsive={isTabletOrMobile}
-          onClick={ToggleNav}
-        >
+      <MobileNav />
+      <Navbar visible={isHidden} isLoggedIn={false} />
+      <StyledWrapper visible={isHidden}>
+        <StyledToggleButton whileTap={{ scale: 0.9 }} onClick={ToggleNav}>
           {isHidden ? <FaArrowRight /> : <FaArrowLeft />}
         </StyledToggleButton>
-
         {children}
       </StyledWrapper>
       <Footer />

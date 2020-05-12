@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useDarkMode = () => {
   const [theme, setTheme] = useState('light')
@@ -12,11 +12,11 @@ export const useDarkMode = () => {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setTheme('dark')
       window.localStorage.setItem('theme', 'dark')
-    } else if ('(prefers-color-scheme: light)') {
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
       setTheme('light')
       window.localStorage.setItem('theme', 'light')
     }

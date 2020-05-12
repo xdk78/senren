@@ -19,6 +19,9 @@ const NavWrapper = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 99999;
+  @media (min-width: 900px) {
+    display: none;
+  }
 `
 
 const IconWrapper = styled.div`
