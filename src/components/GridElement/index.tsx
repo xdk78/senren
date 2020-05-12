@@ -43,6 +43,7 @@ const StyledInnerWrapper = styled.div<WrapperProps>`
   height: 100%;
   display: grid;
   pointer-events: none;
+  cursor: pointer;
   align-items: center;
   ${({ isSelected }) =>
     isSelected &&
