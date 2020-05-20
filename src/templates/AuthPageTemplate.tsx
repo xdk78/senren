@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '../styled-components'
-import { DeviceWidth } from '../themes/constants'
+import styled from 'utils/styled-components'
+import { DeviceWidth } from 'themes/constants'
 
 type AuthPageTemplateProps = {
   children?: JSX.Element | JSX.Element[]

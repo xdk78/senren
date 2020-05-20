@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import styled, { css } from '../styled-components'
-import Navbar from '../components/Navbar'
-import Button from '../components/Button'
-import Footer from '../components/Footer'
-import MobileNav from '../components/MobileNav'
-import { Spacing, DeviceWidth } from '../themes/constants'
+import styled, { css } from 'utils/styled-components'
+import Navbar from 'components/Navbar'
+import Button from 'components/Button'
+import Footer from 'components/Footer'
+import MobileNav from 'components/MobileNav'
+import { Spacing, DeviceWidth } from 'themes/constants'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 
 type UserPageTemplateProps = {
   children: any
 }
+
 type StyledWrapperProps = {
   visible?: boolean
 }
@@ -24,7 +25,7 @@ export const StyledPageWrapper = styled.div`
   }
 
   @media (max-width: ${DeviceWidth.mobile}px) {
-    width: 100%;
+    width: 100vw;
     padding: ${Spacing.small}px;
   }
 `
@@ -43,8 +44,9 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   display: grid;
   justify-content: center;
   @media (max-width: 900px) {
-    padding: 0;
+    padding: 0px;
   }
+
   @media (min-width: 900px) {
     padding-left: 320px;
   }
@@ -54,6 +56,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
       padding: 0 150px 0 150px;
     `}
 `
+
 const StyledToggleButton = styled(Button)`
   position: fixed;
   bottom: 40px;

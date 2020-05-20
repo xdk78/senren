@@ -1,25 +1,23 @@
 import React from 'react'
-import styled from '../../styled-components'
-import ListElementThumbnail from '../ListElementThumbnail'
-import Heading from '../Heading'
-import Paragraph from '../Paragraph'
-import WrapButton from '../ButtonIcon'
-import { FaAward } from 'react-icons/fa'
+import styled from 'utils/styled-components'
+import ListElementThumbnail from 'components/ListElementThumbnail'
+import Heading from 'components/Heading'
+import Paragraph from 'components/Paragraph'
 
 type ListElementProps = {
   title: string
-  description: string
-  award: string
+  overview: string
   rating: string
   image: string
 }
 
 const StyledWrapper = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 80px 250px auto auto;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 24px;
 `
+
 const StyledInnerWrapper = styled.div`
   display: flex;
   padding: 10px;
@@ -39,10 +37,12 @@ const SecondInnerWraper = styled.div`
 `
 const StyledHeading = styled(Heading)`
   margin: 0px;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
-const StyledParagraph = styled(Paragraph)`
-  margin: 0px;
-`
+
 const StyledRating = styled.p`
   color: ${({ theme }) => theme.fontColor};
   font-size: 24px;
@@ -50,22 +50,22 @@ const StyledRating = styled.p`
   text-align: right;
 `
 
-const ListElement = ({
-  title,
-  description,
-  award,
-  rating,
-  image,
-}: ListElementProps) => {
+const StyledParagraph = styled(Paragraph)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
+`
+
+const ListElement = ({ title, overview, rating, image }: ListElementProps) => {
   return (
     <StyledWrapper>
       <ListElementThumbnail src={image} />
       <StyledInnerWrapper>
-        <StyledHeading>{title}</StyledHeading>
-        <StyledParagraph>{description}</StyledParagraph>
+        <StyledHeading title={title}>{title}</StyledHeading>
       </StyledInnerWrapper>
       <SecondInnerWraper>
-        {WrapButton(FaAward)({ text: award })}
+        <StyledParagraph>{overview}</StyledParagraph>
       </SecondInnerWraper>
       <StyledRating>{rating}</StyledRating>
     </StyledWrapper>

@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from '../../styled-components'
+import styled, { css } from 'utils/styled-components'
 import { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
 type StyledButtonIconProps = {
@@ -9,8 +9,9 @@ type StyledButtonIconProps = {
 type ButtonIconProps = {
   award?: boolean
   children?: JSX.Element
-  text?: any
+  text?: string
 }
+
 const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
   color: ${({ theme }) => theme.nav.link};
   display: grid;
@@ -20,6 +21,7 @@ const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
   font-weight: 600;
   transition: 0.2s;
   cursor: pointer;
+
   :hover {
     color: ${({ theme }) => theme.nav.activeLink};
   }

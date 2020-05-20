@@ -1,11 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
-import darkTheme from '../themes/dark'
-import lightTheme from '../themes/light'
-import globalStyle from '../themes/global'
-import { createGlobalStyle, ThemeProvider } from '../styled-components'
-import { useDarkMode } from '../hooks/useDarkMode'
-import withReduxStore from '../lib/with-redux-store'
+import darkTheme from 'themes/dark'
+import lightTheme from 'themes/light'
+import globalStyle from 'themes/global'
+import { createGlobalStyle, ThemeProvider } from 'utils/styled-components'
+import { useDarkMode } from 'hooks/useDarkMode'
+import withReduxStore from 'lib/with-redux-store'
 import { Provider } from 'react-redux'
 
 const GlobalStyle = createGlobalStyle`${globalStyle}`

@@ -12,7 +12,6 @@ html, body {
   color: ${({ theme }) => theme.fontColor};
   background-color: ${({ theme }) => theme.background};
 }
-
 `
 
 export default GlobalStyle

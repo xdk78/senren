@@ -1,10 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import FormWrapper, { StyledForm } from '../components/Form'
-import AuthPageTemplate from '../templates/AuthPageTemplate'
-import Input from '../components/Input'
-import Button from '../components/Button'
-import LoginImage from '../public/LoginImage.svg'
+import FormWrapper, { StyledForm } from 'components/Form'
+import AuthPageTemplate from 'templates/AuthPageTemplate'
+import Input from 'components/Input'
+import Button from 'components/Button'
+import LoginImage from 'public/LoginImage.svg'
 
 const Login = () => {
   const { register, handleSubmit, setValue } = useForm()

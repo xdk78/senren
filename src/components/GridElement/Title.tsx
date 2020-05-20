@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { motion, useInvertedScale } from 'framer-motion'
-import { closeSpring, openSpring } from '../../utils/animations'
-import styled from '../../styled-components'
-import Heading from '../Heading'
+import { closeSpring, openSpring } from 'utils/animations'
+import styled from 'utils/styled-components'
 
 const StyledTitleWrapper = styled(motion.div)`
   position: absolute;
@@ -10,9 +9,12 @@ const StyledTitleWrapper = styled(motion.div)`
   left: 0;
   max-width: 300px;
 `
-const StyledTitle = styled(Heading)`
+
+const StyledTitle = styled.h3`
   color: ${({ theme }) => theme.gridElements.fontColor};
+  text-shadow: 2px 2px 8px rgb(49 49 49 / 79%);
 `
+
 const scaleTranslate = ({ x, y, scaleX, scaleY }) =>
   `scaleX(${scaleX}) scaleY(${scaleY}) translate(${x}, ${y}) translateZ(0)`
 

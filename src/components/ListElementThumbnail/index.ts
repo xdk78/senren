@@ -1,4 +1,4 @@
-import styled from '../../styled-components'
+import styled from 'utils/styled-components'
 
 const ListElementThumbnail = styled.img`
   object-fit: cover;

@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from '../../styled-components'
-import Heading from '.'
-import Paragraph from '../Paragraph'
+import styled from 'utils/styled-components'
+import Heading from 'components/Heading'
+import Paragraph from 'components/Paragraph'
 
 export default {
   title: 'Atoms/Headings',

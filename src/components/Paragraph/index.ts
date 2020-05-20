@@ -1,7 +1,7 @@
-import styled from '../../styled-components'
+import styled from 'utils/styled-components'
 
 const Paragraph = styled.p`
   color: ${({ theme }) => theme.fontColor};
-  margin-bottom: 25px;
+  text-align: justify;
 `
 export default Paragraph

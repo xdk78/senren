@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '../../styled-components'
+import styled from 'utils/styled-components'
 
 type FeaturedGridElementProps = {
   image: string
@@ -38,11 +38,13 @@ const StyledHeading = styled.h3`
   color: white;
   font-size: 28px;
   padding-bottom: 15px;
+  text-shadow: 2px 2px 8px rgb(49 49 49 / 79%);
 `
 const StyledParagraph = styled.p`
   color: white;
   font-weight: 300;
-  padding-bottom: 13px;
+  padding-bottom: 12px;
+  text-align: justify;
 `
 
 const FeaturedGridElement = ({

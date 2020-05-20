@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import styled from '../../styled-components'
+import styled from 'utils/styled-components'
 import {
   FaSearch,
   FaFilm,
@@ -11,7 +11,7 @@ import {
 
 const NavWrapper = styled.div`
   background-color: ${({ theme }) => theme.mobileNav.background};
-  width: 100%;
+  width: 100vw;
   display: grid;
   border-radius: 25px 25px 0px 0px;
   grid-template-columns: repeat(5, 0.2fr);

@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
-import { useInvertedBorderRadius } from '../../utils/use-inverted-border-radius'
-import styled, { css } from '../../styled-components'
-import { openSpring, closeSpring } from '../../utils/animations'
-import { useScrollConstraints } from '../../utils/use-scroll-constraints'
-import { useWheelScroll } from '../../utils/use-wheel-scroll'
+import { useInvertedBorderRadius } from 'utils/use-inverted-border-radius'
+import styled, { css } from 'utils/styled-components'
+import { openSpring, closeSpring } from 'utils/animations'
+import { useScrollConstraints } from 'utils/use-scroll-constraints'
+import { useWheelScroll } from 'utils/use-wheel-scroll'
 import { Title } from './Title'
 import { Content } from './Content'
 import { Image } from './Image'
@@ -26,9 +26,6 @@ type WrapperProps = {
 
 const StyledCard = styled(motion.div)`
   height: 300px;
-  @media (max-width: 1500px) {
-    /* grid-column: span 1; */
-  }
 `
 
 const StyledInnerWrapper = styled.div<WrapperProps>`
@@ -63,7 +60,7 @@ const StyledCardContainer = styled(motion.div)<WrapperProps>`
     isSelected &&
     css`
       height: auto;
-      max-width: 700px;
+      max-width: 480px;
       overflow: hidden;
     `}
 `
@@ -135,7 +132,7 @@ const GridElement = ({
           onDrag={checkSwipeToDismiss}
           onUpdate={checkZIndex}
         >
-          <Image isSelected={isSelected} src={src} pointOfInterest={200} />
+          <Image isSelected={isSelected} src={src} />
           <Title title={title} isSelected={isSelected} />
           <Content content={content} />
 

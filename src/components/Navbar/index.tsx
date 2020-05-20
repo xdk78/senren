@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import styled, { css } from '../../styled-components'
-import WrapButton from '../ButtonIcon'
-import Button from '../Button'
+import styled, { css } from 'utils/styled-components'
+import WrapButton from 'components/ButtonIcon'
+import Button from 'components/Button'
 import {
   FaSearch,
   FaVideo,
