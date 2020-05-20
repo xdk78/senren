@@ -9,6 +9,7 @@ import { Title } from './Title'
 import { Content } from './Content'
 import { Image } from './Image'
 import Button from '../Button'
+import Link from 'next/link'
 
 type GridElementProps = {
   small?: boolean
@@ -18,6 +19,7 @@ type GridElementProps = {
   variants?: any
   initial?: any
   animate?: any
+  link?: string
 }
 
 type WrapperProps = {
@@ -89,6 +91,7 @@ const GridElement = ({
   variants,
   initial,
   animate,
+  link,
 }: GridElementProps) => {
   const gridRef = useRef(null)
   const [isSelected, setSelection] = useState<boolean>(false)
@@ -137,9 +140,11 @@ const GridElement = ({
           <Content content={content} />
 
           <StyledButtonWrapper>
-            <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
-              View More
-            </Button>
+            <Link href={link}>
+              <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
+                View More
+              </Button>
+            </Link>
           </StyledButtonWrapper>
         </StyledCardContainer>
       </StyledInnerWrapper>

@@ -45,6 +45,7 @@ const StyledParagraph = styled.p`
   font-weight: 300;
   padding-bottom: 12px;
   text-align: justify;
+  text-shadow: 2px 2px 8px rgb(49 49 49 / 79%);
 `
 
 const FeaturedGridElement = ({

@@ -30,7 +30,6 @@ const Index = ({ data, fetchTrending }: IndexProps) => {
   useEffect(() => {
     fetchTrending()
   }, [])
-
   return (
     <UserPageTemplate>
       <StyledPageWrapper>
@@ -39,9 +38,9 @@ const Index = ({ data, fetchTrending }: IndexProps) => {
         <Input large placeholder="Find Movies, TV Shows and more..." />
         {data && data.length > 0 && (
           <FeaturedGridElement
-            image={`https://image.tmdb.org/t/p/original/${data[0].poster_path}`}
-            title={data[0].title}
-            description={data[0].overview}
+            image={`https://image.tmdb.org/t/p/original/${data[1].backdrop_path}`}
+            title={data[1].title}
+            description={data[1].overview.slice(0, 120) + '...'}
             about="Action Movie"
           />
         )}
@@ -61,6 +60,7 @@ const Index = ({ data, fetchTrending }: IndexProps) => {
                 variants={fadeInUp}
                 title={item.title}
                 content={item.overview}
+                link={`/movies/${item.id}`}
                 src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
               />
             ))}

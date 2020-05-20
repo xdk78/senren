@@ -1,49 +1,48 @@
 import { Reducer } from 'redux'
 import {
-  FETCH_TRENDING_SUCCESS,
-  FETCH_TRENDING_ERROR,
-  FETCH_TRENDING_PENDING,
-  TrendingActions,
-} from 'actions/trendingActions'
+  FETCH_MOVIE_SUCCESS,
+  FETCH_MOVIE_PENDING,
+  FETCH_MOVIE_ERROR,
+  MovieActions,
+} from 'actions/movieActions'
 
-export type TrendingEntry = {
+export type MovieEntry = {
   title: string
   id: number
   poster_path: string
   overview: string
-  backdrop_path: string
   vote_average: number
 }
 
-type TrendingState = {
-  data: TrendingEntry[]
+type MovieState = {
+  data: MovieEntry[]
   isPending: boolean
 }
 
-const initialState: TrendingState = {
+const initialState: MovieState = {
   data: [],
   isPending: false,
 }
 
-export const trendingReducer: Reducer<TrendingState> = (
+export const movieReducer: Reducer<MovieState> = (
   state = initialState,
-  action: TrendingActions
+  action: MovieActions
 ) => {
   switch (action.type) {
-    case FETCH_TRENDING_PENDING: {
+    case FETCH_MOVIE_PENDING: {
       return {
         ...state,
         isPending: true,
       }
     }
-    case FETCH_TRENDING_SUCCESS: {
+    case FETCH_MOVIE_SUCCESS: {
       return {
         ...state,
         data: action.payload.data,
         isPending: false,
       }
     }
-    case FETCH_TRENDING_ERROR: {
+    case FETCH_MOVIE_ERROR: {
       return {
         ...state,
         error: action.payload.error,

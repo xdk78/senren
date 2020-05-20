@@ -41,7 +41,7 @@ export const fetchTrendingError: ActionCreator<FetchTrendingError> = (
 export const fetchTrending = () => async (dispatch) => {
   try {
     dispatch(fetchTrendingPending())
-    const { data } = await apiClient(`trending/all/week`, { method: 'GET' })
+    const { data } = await apiClient(`trending/movie/week`, { method: 'GET' })
     const res = data.results
     res.map((el) => {
       if (!el.title) {
