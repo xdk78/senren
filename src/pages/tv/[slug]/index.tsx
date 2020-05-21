@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { connect } from 'react-redux'
-import { fetchMovie } from 'actions/movieActions'
+import { fetchTv } from 'actions/tvActions'
 import PageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
 import FeaturedGridElement from 'components/FeaturedGridElement'
 
-const Index = ({ fetchMovie, data }) => {
+const TvSeries = ({ fetchTv, data }) => {
   const router = useRouter()
   useEffect(() => {
     const { slug } = router.query
-    fetchMovie(slug)
+    fetchTv(slug)
   }, [])
   return (
     <PageTemplate>
@@ -27,15 +27,15 @@ const Index = ({ fetchMovie, data }) => {
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  data: state.movieState.data,
-  pending: state.movieState.isPending,
-  error: state.movieState.error,
+  data: state.tvState.data,
+  pending: state.tvState.isPending,
+  error: state.tvState.error,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMovie: (slug) => {
-    dispatch(fetchMovie(slug))
+  fetchTv: (slug) => {
+    dispatch(fetchTv(slug))
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default connect(mapStateToProps, mapDispatchToProps)(TvSeries)

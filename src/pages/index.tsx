@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import UserPageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
+import PageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
 import { fadeInUp, stagger } from 'utils/animations'
 import { motion } from 'framer-motion'
 import { connect } from 'react-redux'
@@ -30,7 +30,7 @@ const Index = ({ fetchDiscover, tvData, moviesData }: IndexProps) => {
     fetchDiscover()
   }, [])
   return (
-    <UserPageTemplate>
+    <PageTemplate>
       <StyledPageWrapper>
         <Heading>Explore</Heading>
         <Paragraph>Explore your new favourite movie & TV Show</Paragraph>
@@ -90,7 +90,7 @@ const Index = ({ fetchDiscover, tvData, moviesData }: IndexProps) => {
               ))}
         </GridWrapper>
       </StyledPageWrapper>
-    </UserPageTemplate>
+    </PageTemplate>
   )
 }
 

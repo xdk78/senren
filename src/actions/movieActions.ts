@@ -1,6 +1,7 @@
 import { Action, ActionCreator } from 'redux'
 import apiClient from 'client'
 import { MovieEntry } from 'reducers/movieReducer'
+import { fixTitle } from 'utils/fixJSON'
 
 export const FETCH_MOVIE_PENDING = 'FETCH_MOVIE_PENDING'
 export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS'
@@ -42,7 +43,8 @@ export const fetchMovie = (id) => async (dispatch) => {
   try {
     dispatch(fetchMoviePending())
     const { data } = await apiClient(`movie/${id}`, { method: 'GET' })
-    dispatch(fetchMovieSuccess(data))
+
+    dispatch(fetchMovieSuccess(fixTitle(data)))
   } catch (error) {
     dispatch(fetchMovieError(error.toString()))
     throw error
