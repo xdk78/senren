@@ -56,7 +56,7 @@ const MobileNav = () => {
         </Link>
       </IconWrapper>
       <IconWrapper>
-        <Link href="/">
+        <Link href="/tv">
           <StyledLink>
             <FaPhotoVideo />
           </StyledLink>

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import UserPageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
+import PageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
 import { fadeInUp, stagger } from 'utils/animations'
 import { motion } from 'framer-motion'
 import { connect } from 'react-redux'
-import { fetchTrending } from 'actions/trendingActions'
+import { fetchTrending, EntryType } from 'actions/trendingActions'
 import { TrendingEntry } from 'reducers/trendingReducer'
 import FeaturedGridElement from 'components/FeaturedGridElement'
 import GridElement from 'components/GridElement'
@@ -15,7 +15,7 @@ import styled from 'utils/styled-components'
 
 type IndexProps = {
   data: TrendingEntry[]
-  fetchTrending: () => void
+  fetchTrending: (type: EntryType) => void
 }
 
 const GridWrapper = styled(motion.div)`
@@ -28,10 +28,10 @@ const GridWrapper = styled(motion.div)`
 
 const Index = ({ data, fetchTrending }: IndexProps) => {
   useEffect(() => {
-    fetchTrending()
+    fetchTrending('movie')
   }, [])
   return (
-    <UserPageTemplate>
+    <PageTemplate>
       <StyledPageWrapper>
         <Heading>Explore</Heading>
         <Paragraph>Discover your new favourite show</Paragraph>
@@ -65,7 +65,7 @@ const Index = ({ data, fetchTrending }: IndexProps) => {
               />
             ))}
         </GridWrapper>
-        <Heading>Top 100</Heading>
+        <Heading>Top 20</Heading>
         {data &&
           data.length > 0 &&
           data.map((item: TrendingEntry, index: number) => (
@@ -78,7 +78,7 @@ const Index = ({ data, fetchTrending }: IndexProps) => {
             />
           ))}
       </StyledPageWrapper>
-    </UserPageTemplate>
+    </PageTemplate>
   )
 }
 
@@ -90,8 +90,8 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTrending: () => {
-    dispatch(fetchTrending())
+  fetchTrending: (type: EntryType) => {
+    dispatch(fetchTrending(type))
   },
 })
 

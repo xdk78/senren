@@ -26,15 +26,15 @@ const GridWrapper = styled(motion.div)`
   grid-auto-flow: dense;
 `
 
-const Movies = ({ data, fetchTrending }: IndexProps) => {
+const Tv = ({ data, fetchTrending }: IndexProps) => {
   useEffect(() => {
-    fetchTrending('movie')
+    fetchTrending('tv')
   }, [])
   return (
     <PageTemplate>
       <StyledPageWrapper>
-        <Heading>Movies</Heading>
-        <Paragraph>Discover your new favourite movie</Paragraph>
+        <Heading>TV Shows</Heading>
+        <Paragraph>Discover your new favourite TV Show</Paragraph>
         <Input large placeholder="Find Movies, TV Shows and more..." />
         {data && data.length > 0 && (
           <FeaturedGridElement
@@ -45,7 +45,7 @@ const Movies = ({ data, fetchTrending }: IndexProps) => {
           />
         )}
         <Heading>Trending</Heading>
-        <Paragraph>Most popular Movies right now</Paragraph>
+        <Paragraph>Most popular TV Shows and Movies right now</Paragraph>
         <GridWrapper
           variants={stagger}
           initial="initial"
@@ -60,7 +60,7 @@ const Movies = ({ data, fetchTrending }: IndexProps) => {
                 variants={fadeInUp}
                 title={item.title}
                 content={item.overview}
-                link={`/movies/${item.id}`}
+                link={`/tv/${item.id}`}
                 src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
               />
             ))}
@@ -95,4 +95,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movies)
+export default connect(mapStateToProps, mapDispatchToProps)(Tv)
