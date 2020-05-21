@@ -17,14 +17,15 @@ export const fetchTvPending: ActionCreator<FetchTvPending> = () => ({
 
 export interface FetchTvSuccess extends Action {
   type: 'FETCH_TV_SUCCESS'
-  payload: { data: TvEntry[] }
+  payload: { tvData: TvEntry[]; trailerData: any }
 }
 
 export const fetchTvSuccess: ActionCreator<FetchTvSuccess> = (
-  data: TvEntry[]
+  tvData: TvEntry[],
+  trailerData: any
 ) => ({
   type: FETCH_TV_SUCCESS,
-  payload: { data },
+  payload: { tvData, trailerData },
 })
 
 export interface FetchTvError extends Action {
@@ -40,9 +41,9 @@ export const fetchTvError: ActionCreator<FetchTvError> = (error: any) => ({
 export const fetchTv = (id) => async (dispatch) => {
   try {
     dispatch(fetchTvPending())
-    const { data } = await apiClient(`tv/${id}`, { method: 'GET' })
-
-    dispatch(fetchTvSuccess(fixTitle(data)))
+    const tvRes = await apiClient(`tv/${id}`, { method: 'GET' })
+    const trailerRes = await apiClient(`tv/${id}/videos`, { method: 'GET' })
+    dispatch(fetchTvSuccess(fixTitle(tvRes.data), trailerRes.data))
   } catch (error) {
     dispatch(fetchTvError(error.toString()))
     throw error

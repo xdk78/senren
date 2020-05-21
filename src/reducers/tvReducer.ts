@@ -38,7 +38,8 @@ export const tvReducer: Reducer<TvState> = (
     case FETCH_TV_SUCCESS: {
       return {
         ...state,
-        data: action.payload.data,
+        tvData: action.payload.tvData,
+        trailerData: action.payload.trailerData,
         isPending: false,
       }
     }
