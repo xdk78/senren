@@ -3,19 +3,18 @@ import UserPageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
 import { fadeInUp, stagger } from 'utils/animations'
 import { motion } from 'framer-motion'
 import { connect } from 'react-redux'
-import { fetchTrending } from 'actions/trendingActions'
-import { TrendingEntry } from 'reducers/trendingReducer'
+import { fetchDiscover } from 'actions/discoverActions'
 import FeaturedGridElement from 'components/FeaturedGridElement'
 import GridElement from 'components/GridElement'
 import Heading from 'components/Heading'
 import Input from 'components/Input'
-import ListElement from 'components/ListElement'
 import Paragraph from 'components/Paragraph'
 import styled from 'utils/styled-components'
 
 type IndexProps = {
-  data: TrendingEntry[]
-  fetchTrending: () => void
+  tvData: any
+  moviesData: any
+  fetchDiscover: () => void
 }
 
 const GridWrapper = styled(motion.div)`
@@ -26,57 +25,70 @@ const GridWrapper = styled(motion.div)`
   grid-auto-flow: dense;
 `
 
-const Index = ({ data, fetchTrending }: IndexProps) => {
+const Index = ({ fetchDiscover, tvData, moviesData }: IndexProps) => {
   useEffect(() => {
-    fetchTrending()
+    fetchDiscover()
   }, [])
   return (
     <UserPageTemplate>
       <StyledPageWrapper>
         <Heading>Explore</Heading>
-        <Paragraph>Discover your new favourite show</Paragraph>
+        <Paragraph>Explore your new favourite movie & TV Show</Paragraph>
         <Input large placeholder="Find Movies, TV Shows and more..." />
-        {data && data.length > 0 && (
+        {tvData.results && tvData.results.length > 0 && (
           <FeaturedGridElement
-            image={`https://image.tmdb.org/t/p/original/${data[1].backdrop_path}`}
-            title={data[1].title}
-            description={data[1].overview.slice(0, 120) + '...'}
+            image={`https://image.tmdb.org/t/p/original/${tvData.results[1].backdrop_path}`}
+            title={tvData.results[1].original_name}
+            description={tvData.results[1].overview.slice(0, 120) + '...'}
             about="Action Movie"
           />
         )}
-        <Heading>Trending</Heading>
-        <Paragraph>Most popular TV Shows and Movies right now</Paragraph>
+        <Heading>Discover Movies</Heading>
+        <Paragraph>Explor your new favourite movie</Paragraph>
         <GridWrapper
           variants={stagger}
           initial="initial"
           animate="animate"
           exit={{ opacity: 0 }}
         >
-          {data &&
-            data.length > 0 &&
-            data.map((item: TrendingEntry) => (
-              <GridElement
-                key={item.id}
-                variants={fadeInUp}
-                title={item.title}
-                content={item.overview}
-                link={`/movies/${item.id}`}
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-              />
-            ))}
+          {moviesData.results &&
+            moviesData.results.length > 0 &&
+            moviesData.results
+              .slice(0, 8)
+              .map((item) => (
+                <GridElement
+                  key={item.id}
+                  variants={fadeInUp}
+                  title={item.original_title}
+                  content={item.overview}
+                  link={`/movies/${item.id}`}
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                />
+              ))}
         </GridWrapper>
-        <Heading>Top 100</Heading>
-        {data &&
-          data.length > 0 &&
-          data.map((item: TrendingEntry, index: number) => (
-            <ListElement
-              key={item.id}
-              title={`${index + 1}. ${item.title}`}
-              overview={item.overview}
-              rating={`${item.vote_average}/10`}
-              image={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-            />
-          ))}
+        <Heading>Discover TV Shows</Heading>
+        <Paragraph>Explore your new favourite TV Show</Paragraph>
+        <GridWrapper
+          variants={stagger}
+          initial="initial"
+          animate="animate"
+          exit={{ opacity: 0 }}
+        >
+          {tvData.results &&
+            tvData.results.length > 0 &&
+            tvData.results
+              .slice(0, 8)
+              .map((item) => (
+                <GridElement
+                  key={item.id}
+                  variants={fadeInUp}
+                  title={item.original_name}
+                  content={item.overview}
+                  link={`/movies/${item.id}`}
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                />
+              ))}
+        </GridWrapper>
       </StyledPageWrapper>
     </UserPageTemplate>
   )
@@ -84,14 +96,15 @@ const Index = ({ data, fetchTrending }: IndexProps) => {
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  data: state.trendingState.data,
-  pending: state.trendingState.isPending,
-  error: state.trendingState.error,
+  tvData: state.discoverState.tvData,
+  moviesData: state.discoverState.moviesData,
+  pending: state.discoverState.isPending,
+  error: state.discoverState.error,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTrending: () => {
-    dispatch(fetchTrending())
+  fetchDiscover: () => {
+    dispatch(fetchDiscover())
   },
 })
 
