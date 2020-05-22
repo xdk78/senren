@@ -46,9 +46,7 @@ export const fetchTrending = (type: EntryType) => async (dispatch) => {
     dispatch(fetchTrendingPending())
     const { data } = await apiClient(`trending/${type}/week`, { method: 'GET' })
 
-    const res = data.results.map((el: TrendingEntry) => {
-      return fixTitle(el)
-    })
+    const res = data.results.map((el: TrendingEntry) => fixTitle(el))
 
     dispatch(fetchTrendingSuccess(res))
   } catch (error) {
