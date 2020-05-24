@@ -10,7 +10,6 @@ import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import ReactPlayer from 'react-player'
-import ImagePlaceholder from 'public/img-placeholder.svg'
 
 const StyledVideoWrapper = styled.div`
   display: grid;
@@ -83,9 +82,8 @@ const TvSeries = ({ fetchTv, tvData, trailerData }) => {
             <ListElement
               title={tvData.next_episode_to_air.name}
               overview={`Air date: ${tvData.next_episode_to_air.air_date}`}
-              image={`https://image.tmdb.org/t/p/original/${tvData.poster_path}`}
-              rating={''}
-            />{' '}
+              image={tvData.poster_path}
+            />
           </div>
         )}
         <Heading>Trailer</Heading>
@@ -109,12 +107,7 @@ const TvSeries = ({ fetchTv, tvData, trailerData }) => {
             <ListElement
               title={item.name}
               overview={item.overview}
-              image={
-                item.poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                  : ImagePlaceholder
-              }
-              rating={''}
+              image={item.poster_path}
               key={item.id}
             />
           ))}

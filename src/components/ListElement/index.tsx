@@ -1,14 +1,17 @@
 import React from 'react'
+import Link from 'next/link'
 import styled from 'utils/styled-components'
 import ListElementThumbnail from 'components/ListElementThumbnail'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
+import ImagePlaceholder from 'public/img-placeholder.svg'
 
 type ListElementProps = {
   title: string
   overview: string
-  rating: string
+  rating?: string
   image: string
+  link?: string
 }
 
 const StyledWrapper = styled.div`
@@ -41,6 +44,7 @@ const StyledHeading = styled(Heading)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 `
 
 const StyledRating = styled.p`
@@ -57,12 +61,28 @@ const StyledParagraph = styled(Paragraph)`
   padding: 0;
 `
 
-const ListElement = ({ title, overview, rating, image }: ListElementProps) => {
+const ListElement = ({
+  title,
+  overview,
+  rating,
+  image,
+  link,
+}: ListElementProps) => {
   return (
     <StyledWrapper>
-      <ListElementThumbnail src={image} />
+      <ListElementThumbnail
+        src={
+          image ? `https://image.tmdb.org/t/p/w500/${image}` : ImagePlaceholder
+        }
+      />
       <StyledInnerWrapper>
-        <StyledHeading title={title}>{title}</StyledHeading>
+        {link ? (
+          <Link href={link}>
+            <StyledHeading title={title}>{title}</StyledHeading>
+          </Link>
+        ) : (
+          <StyledHeading title={title}>{title}</StyledHeading>
+        )}
       </StyledInnerWrapper>
       <SecondInnerWraper>
         <StyledParagraph>{overview}</StyledParagraph>

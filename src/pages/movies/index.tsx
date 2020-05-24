@@ -74,7 +74,8 @@ const Movies = ({ data, fetchTrending }: IndexProps) => {
               title={`${index + 1}. ${item.title}`}
               overview={item.overview}
               rating={`${item.vote_average}/10`}
-              image={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+              link={`/movies/${item.id}`}
+              image={item.poster_path}
             />
           ))}
       </StyledPageWrapper>
