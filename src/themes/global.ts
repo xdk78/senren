@@ -9,8 +9,6 @@ const GlobalStyle = `
 html, body {
   margin: 0px;
   padding: 0px;
-  color: ${({ theme }) => theme.fontColor};
-  background-color: ${({ theme }) => theme.background};
 }
 `
 

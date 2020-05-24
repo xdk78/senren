@@ -39,6 +39,7 @@ export const GridWrapper = styled.div`
   margin-top: 20px;
   margin-bottom: 50px;
   grid-gap: 20px;
+  max-width: 1400px;
 `
 
 const StyledWrapper = styled.div<StyledWrapperProps>`
@@ -46,6 +47,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   transition: 0.3s;
   display: grid;
   justify-content: center;
+  width: 100%;
   @media (max-width: 900px) {
     padding: 0px;
   }

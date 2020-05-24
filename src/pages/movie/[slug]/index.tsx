@@ -53,7 +53,11 @@ const Index = ({ fetchMovie, movieData, trailerData }) => {
             title={movieData.title}
             about={movieData.tagline}
             description={movieData.overview}
-            image={`https://image.tmdb.org/t/p/original/${movieData.backdrop_path}`}
+            image={`https://image.tmdb.org/t/p/original/${
+              movieData.backdrop_path
+                ? movieData.backdrop_path
+                : movieData.poster_path
+            }`}
           />
         )}
         <StyledGenereWrapper>
@@ -74,17 +78,19 @@ const Index = ({ fetchMovie, movieData, trailerData }) => {
             </Button>
           )}
         </StyledWrapper>
-        <Heading>Trailer</Heading>
-        <Paragraph>Watch trailer of this Movie</Paragraph>
 
-        {trailerData && (
-          <StyledVideoWrapper>
-            <ReactPlayer
-              width="100%"
-              height="100%"
-              url={`https://www.youtube.com/watch?v=${trailerData.results[0].key}`}
-            />
-          </StyledVideoWrapper>
+        {trailerData?.result && trailerData.length > 0 && (
+          <>
+            <Heading>Trailer</Heading>
+            <Paragraph>Watch trailer of this Movie</Paragraph>
+            <StyledVideoWrapper>
+              <ReactPlayer
+                width="100%"
+                height="100%"
+                url={`https://www.youtube.com/watch?v=${trailerData.results[0].key}`}
+              />
+            </StyledVideoWrapper>
+          </>
         )}
       </StyledPageWrapper>
     </PageTemplate>

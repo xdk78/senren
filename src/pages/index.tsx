@@ -8,6 +8,7 @@ import FeaturedGridElement from 'components/FeaturedGridElement'
 import GridElement from 'components/GridElement'
 import Heading from 'components/Heading'
 import Input from 'components/Input'
+import Search from 'components/Search'
 import Paragraph from 'components/Paragraph'
 import styled from 'utils/styled-components'
 
@@ -34,7 +35,7 @@ const Index = ({ fetchDiscover, tvData, moviesData }: IndexProps) => {
       <StyledPageWrapper>
         <Heading>Explore</Heading>
         <Paragraph>Explore your new favourite movie & TV Show</Paragraph>
-        <Input large placeholder="Find Movies, TV Shows and more..." />
+        <Search placeholder="Find Movies, TV Shows and more..." />
         {tvData.results && tvData.results.length > 0 && (
           <FeaturedGridElement
             image={`https://image.tmdb.org/t/p/original/${tvData.results[1].backdrop_path}`}
@@ -61,7 +62,7 @@ const Index = ({ fetchDiscover, tvData, moviesData }: IndexProps) => {
                   variants={fadeInUp}
                   title={item.original_title}
                   content={`${item.overview.slice(0, 350)}...`}
-                  link={`/movies/${item.id}`}
+                  link={`/movie/${item.id}`}
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                 />
               ))}

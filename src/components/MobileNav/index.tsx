@@ -49,7 +49,7 @@ const MobileNav = () => {
         </Link>
       </IconWrapper>
       <IconWrapper>
-        <Link href="/movies">
+        <Link href="/movie">
           <StyledLink>
             <FaFilm />
           </StyledLink>
