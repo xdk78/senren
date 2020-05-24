@@ -38,7 +38,8 @@ export const movieReducer: Reducer<MovieState> = (
     case FETCH_MOVIE_SUCCESS: {
       return {
         ...state,
-        data: action.payload.data,
+        movieData: action.payload.movieData,
+        trailerData: action.payload.trailerData,
         isPending: false,
       }
     }

@@ -17,14 +17,15 @@ export const fetchMoviePending: ActionCreator<FetchMoviePending> = () => ({
 
 export interface FetchMovieSuccess extends Action {
   type: 'FETCH_MOVIE_SUCCESS'
-  payload: { data: MovieEntry[] }
+  payload: { movieData: MovieEntry[]; trailerData: any }
 }
 
 export const fetchMovieSuccess: ActionCreator<FetchMovieSuccess> = (
-  data: MovieEntry[]
+  movieData: MovieEntry[],
+  trailerData: any
 ) => ({
   type: FETCH_MOVIE_SUCCESS,
-  payload: { data },
+  payload: { movieData, trailerData },
 })
 
 export interface FetchMovieError extends Action {
@@ -42,9 +43,9 @@ export const fetchMovieError: ActionCreator<FetchMovieError> = (
 export const fetchMovie = (id) => async (dispatch) => {
   try {
     dispatch(fetchMoviePending())
-    const { data } = await apiClient(`movie/${id}`, { method: 'GET' })
-
-    dispatch(fetchMovieSuccess(fixTitle(data)))
+    const movieRes = await apiClient(`movie/${id}`, { method: 'GET' })
+    const trailerRes = await apiClient(`movie/${id}/videos`, { method: 'GET' })
+    dispatch(fetchMovieSuccess(fixTitle(movieRes.data), trailerRes.data))
   } catch (error) {
     dispatch(fetchMovieError(error.toString()))
     throw error
