@@ -23,6 +23,24 @@ const StyledLink = styled.a`
   color: white;
   text-decoration: none;
 `
+const StyledWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center;
+  width: 100%;
+`
+const StyledGenereWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+
+const StyledGenereItem = styled.p`
+  border: 2px solid ${({ theme }) => theme.primary};
+  padding: 10px;
+  color: ${({ theme }) => theme.fontColor};
+  margin: 10px;
+`
 
 const TvSeries = ({ fetchTv, tvData, trailerData }) => {
   const router = useRouter()
@@ -41,15 +59,24 @@ const TvSeries = ({ fetchTv, tvData, trailerData }) => {
             image={`https://image.tmdb.org/t/p/original/${tvData.backdrop_path}`}
           />
         )}
-        <Button>Add to Watchlist</Button>
-        {tvData && <Button>{`${tvData.vote_average}/10  `}</Button>}
-        {tvData && (
-          <Button>
-            <StyledLink target="__blank" href={tvData.homepage}>
-              Watch
-            </StyledLink>
-          </Button>
-        )}
+        <StyledGenereWrapper>
+          {tvData &&
+            tvData.genres &&
+            tvData.genres.map((item) => (
+              <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
+            ))}
+        </StyledGenereWrapper>
+        <StyledWrapper>
+          <Button>Add to Watchlist</Button>
+          {tvData && <Button>{`${tvData.vote_average}/10  `}</Button>}
+          {tvData && (
+            <Button>
+              <StyledLink target="__blank" href={tvData.homepage}>
+                Watch
+              </StyledLink>
+            </Button>
+          )}
+        </StyledWrapper>
         {tvData && tvData.next_episode_to_air && (
           <div>
             <Heading>Next Episode to Air</Heading>{' '}
