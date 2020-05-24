@@ -60,7 +60,7 @@ const Index = ({ fetchDiscover, tvData, moviesData }: IndexProps) => {
                   key={item.id}
                   variants={fadeInUp}
                   title={item.original_title}
-                  content={item.overview}
+                  content={`${item.overview.slice(0, 350)}...`}
                   link={`/movies/${item.id}`}
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                 />
@@ -83,8 +83,8 @@ const Index = ({ fetchDiscover, tvData, moviesData }: IndexProps) => {
                   key={item.id}
                   variants={fadeInUp}
                   title={item.original_name}
-                  content={item.overview}
-                  link={`/movies/${item.id}`}
+                  content={`${item.overview.slice(0, 350)}...`}
+                  link={`/tv/${item.id}`}
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                 />
               ))}

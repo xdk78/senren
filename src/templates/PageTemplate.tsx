@@ -32,7 +32,10 @@ export const StyledPageWrapper = styled.div`
 
 export const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(calc(180px + 12vmin), 100%), 1fr)
+  );
   margin-top: 20px;
   margin-bottom: 50px;
   grid-gap: 20px;
