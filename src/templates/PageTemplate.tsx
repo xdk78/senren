@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled, { css } from 'utils/styled-components'
+import { motion } from 'framer-motion'
 import Navbar from 'components/Navbar'
 import Button from 'components/Button'
 import Footer from 'components/Footer'
@@ -18,34 +19,32 @@ type StyledWrapperProps = {
 export const StyledPageWrapper = styled.div`
   height: 100%;
   padding: ${Spacing.large}px;
-  max-width: 1100px;
-
   @media (min-width: 2160px) {
-    max-width: 1400px;
+    min-width: 1400px;
   }
 
   @media (max-width: ${DeviceWidth.mobile}px) {
     width: 100vw;
-    padding: ${Spacing.small}px;
   }
 `
 
-export const GridWrapper = styled.div`
+export const GridWrapper = styled(motion.div)`
+  padding-top: 20px;
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
     minmax(min(calc(180px + 12vmin), 100%), 1fr)
   );
-  margin-top: 20px;
-  margin-bottom: 50px;
   grid-gap: 20px;
-  max-width: 1400px;
+  grid-auto-flow: dense;
+`
+const StyledWrapper = styled.div`
+  background-color: ${({ theme }) => theme.background};
+  min-height: 100vh;
 `
 
-const StyledWrapper = styled.div<StyledWrapperProps>`
-  background-color: ${({ theme }) => theme.background};
+const StyledInnerWrapper = styled.div<StyledWrapperProps>`
   transition: 0.3s;
-  display: grid;
   justify-content: center;
   width: 100%;
   @media (max-width: 900px) {
@@ -83,11 +82,13 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
     <>
       <MobileNav />
       <Navbar visible={isHidden} isLoggedIn={false} />
-      <StyledWrapper visible={isHidden}>
-        <StyledToggleButton whileTap={{ scale: 0.9 }} onClick={ToggleNav}>
-          {isHidden ? <FaArrowRight /> : <FaArrowLeft />}
-        </StyledToggleButton>
-        {children}
+      <StyledWrapper>
+        <StyledInnerWrapper visible={isHidden}>
+          <StyledToggleButton whileTap={{ scale: 0.9 }} onClick={ToggleNav}>
+            {isHidden ? <FaArrowRight /> : <FaArrowLeft />}
+          </StyledToggleButton>
+          {children}
+        </StyledInnerWrapper>
       </StyledWrapper>
       <Footer />
     </>

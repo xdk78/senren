@@ -9,6 +9,7 @@ import styled from 'utils/styled-components'
 import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
+import Spinner, { LoaderWrapper } from 'components/Spinner'
 const StyledWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -39,7 +40,7 @@ const StyledLink = styled.a`
   text-decoration: none;
 `
 
-const Index = ({ fetchMovie, movieData, trailerData }) => {
+const Index = ({ fetchMovie, movieData, trailerData, pending, error }) => {
   const router = useRouter()
   useEffect(() => {
     const { slug } = router.query
@@ -47,52 +48,61 @@ const Index = ({ fetchMovie, movieData, trailerData }) => {
   }, [])
   return (
     <PageTemplate>
-      <StyledPageWrapper>
-        {movieData && (
-          <FeaturedGridElement
-            title={movieData.title}
-            about={movieData.tagline}
-            description={movieData.overview}
-            image={`https://image.tmdb.org/t/p/original/${
-              movieData.backdrop_path
-                ? movieData.backdrop_path
-                : movieData.poster_path
-            }`}
-          />
-        )}
-        <StyledGenereWrapper>
-          {movieData &&
-            movieData.genres &&
-            movieData.genres.map((item) => (
-              <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
-            ))}
-        </StyledGenereWrapper>
-        <StyledWrapper>
-          <Button>Add to Watchlist</Button>
-          {movieData && <Button>{`${movieData.vote_average}/10  `}</Button>}
+      {pending && !error ? (
+        <LoaderWrapper>
+          <Spinner />
+        </LoaderWrapper>
+      ) : error ? (
+        <LoaderWrapper>
+          <Heading>Sorry there is no data :(</Heading>
+        </LoaderWrapper>
+      ) : (
+        <StyledPageWrapper>
           {movieData && (
-            <Button>
-              <StyledLink target="__blank" href={movieData.homepage}>
-                Watch
-              </StyledLink>
-            </Button>
+            <FeaturedGridElement
+              title={movieData.title}
+              about={movieData.tagline}
+              description={movieData.overview}
+              image={`https://image.tmdb.org/t/p/original/${
+                movieData.backdrop_path
+                  ? movieData.backdrop_path
+                  : movieData.poster_path
+              }`}
+            />
           )}
-        </StyledWrapper>
-
-        {trailerData?.result && trailerData.length > 0 && (
-          <>
-            <Heading>Trailer</Heading>
-            <Paragraph>Watch trailer of this Movie</Paragraph>
-            <StyledVideoWrapper>
-              <ReactPlayer
-                width="100%"
-                height="100%"
-                url={`https://www.youtube.com/watch?v=${trailerData.results[0].key}`}
-              />
-            </StyledVideoWrapper>
-          </>
-        )}
-      </StyledPageWrapper>
+          <StyledGenereWrapper>
+            {movieData &&
+              movieData.genres &&
+              movieData.genres.map((item) => (
+                <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
+              ))}
+          </StyledGenereWrapper>
+          <StyledWrapper>
+            <Button>Add to Watchlist</Button>
+            {movieData && <Button>{`${movieData.vote_average}/10  `}</Button>}
+            {movieData && (
+              <Button>
+                <StyledLink target="__blank" href={movieData.homepage}>
+                  Watch
+                </StyledLink>
+              </Button>
+            )}
+          </StyledWrapper>
+          {trailerData?.result && trailerData.length > 0 && (
+            <>
+              <Heading>Trailer</Heading>
+              <Paragraph>Watch trailer of this Movie</Paragraph>
+              <StyledVideoWrapper>
+                <ReactPlayer
+                  width="100%"
+                  height="100%"
+                  url={`https://www.youtube.com/watch?v=${trailerData.results[0].key}`}
+                />
+              </StyledVideoWrapper>
+            </>
+          )}
+        </StyledPageWrapper>
+      )}
     </PageTemplate>
   )
 }

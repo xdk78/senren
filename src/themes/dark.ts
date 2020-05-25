@@ -6,6 +6,10 @@ const DarkTheme: ThemeInterface = {
   fontColor: '#FFFFFF',
   buttonFont: '#FFFFFF',
   boxShadow: '',
+  spinner: {
+    primary: '#5199FF',
+    secondary: '#052555',
+  },
   inputs: {
     input: '#01142F',
     largeInput: '#2F2F2F',

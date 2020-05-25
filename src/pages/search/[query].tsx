@@ -1,24 +1,19 @@
 import React, { useEffect } from 'react'
-import styled from 'utils/styled-components'
 import { useRouter } from 'next/router'
-import { motion } from 'framer-motion'
-import PageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
+import PageTemplate, {
+  StyledPageWrapper,
+  GridWrapper,
+} from 'templates/PageTemplate'
 import { connect } from 'react-redux'
 import { fetchSearch } from 'actions/searchAction'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import GridElement from 'components/GridElement'
 import Search from 'components/Search'
-const GridWrapper = styled(motion.div)`
-  padding-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  grid-gap: 20px;
-  grid-auto-flow: dense;
-  max-width: 1400px;
-`
+import { stagger, fadeInUp } from 'utils/animations'
+import Spinner, { LoaderWrapper } from 'components/Spinner'
 
-const Index = ({ fetchSearch, data }) => {
+const Index = ({ fetchSearch, data, pending, error }) => {
   const router = useRouter()
   const { query } = router.query
   useEffect(() => {
@@ -26,26 +21,42 @@ const Index = ({ fetchSearch, data }) => {
   }, [])
   return (
     <PageTemplate>
-      <Heading>Your search results</Heading>
-      <Paragraph>For query: {query}</Paragraph>
-      <Search placeholder="Search for TV Shows and movies..." />
-      {data?.length > 0 ? (
-        <StyledPageWrapper>
-          <GridWrapper>
-            {data &&
-              data.map((item) => (
-                <GridElement
-                  title={item.title}
-                  content={item.overview}
-                  src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                  key={item.id}
-                  link={`/${item.media_type}/${item.id}`}
-                />
-              ))}
-          </GridWrapper>
-        </StyledPageWrapper>
+      {pending && !error ? (
+        <LoaderWrapper>
+          <Spinner />
+        </LoaderWrapper>
+      ) : error ? (
+        <LoaderWrapper>
+          <Heading>Sorry there is no data :(</Heading>
+        </LoaderWrapper>
       ) : (
-        <Paragraph>Sorry Nothing found :( </Paragraph>
+        <StyledPageWrapper>
+          <Heading>Your search results</Heading>
+          <Paragraph>For query: {query}</Paragraph>
+          <Search placeholder="Search for TV Shows and movies..." />
+          {data?.length > 0 ? (
+            <GridWrapper
+              variants={stagger}
+              initial="initial"
+              animate="animate"
+              exit={{ opacity: 0 }}
+            >
+              {data &&
+                data.map((item) => (
+                  <GridElement
+                    title={item.title}
+                    content={item.overview}
+                    src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    key={item.id}
+                    variants={fadeInUp}
+                    link={`/${item.media_type}/${item.id}`}
+                  />
+                ))}
+            </GridWrapper>
+          ) : (
+            <Paragraph>Sorry Nothing found :( </Paragraph>
+          )}
+        </StyledPageWrapper>
       )}
     </PageTemplate>
   )

@@ -10,6 +10,7 @@ import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import ReactPlayer from 'react-player'
+import Spinner, { LoaderWrapper } from 'components/Spinner'
 
 const StyledVideoWrapper = styled.div`
   display: grid;
@@ -18,6 +19,7 @@ const StyledVideoWrapper = styled.div`
     height: 300px;
   }
 `
+
 const StyledLink = styled.a`
   color: white;
   text-decoration: none;
@@ -26,7 +28,6 @@ const StyledWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   justify-items: center;
-  /* width: 100%; */
 `
 const StyledGenereWrapper = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ const StyledGenereItem = styled.p`
   margin: 10px;
 `
 
-const TvSeries = ({ fetchTv, tvData, trailerData }) => {
+const TvSeries = ({ fetchTv, tvData, trailerData, pending, error }) => {
   const router = useRouter()
   useEffect(() => {
     const { slug } = router.query
@@ -49,74 +50,84 @@ const TvSeries = ({ fetchTv, tvData, trailerData }) => {
   }, [])
   return (
     <PageTemplate>
-      <StyledPageWrapper>
-        {tvData && (
-          <FeaturedGridElement
-            title={tvData.title}
-            about={tvData.tagline}
-            description={tvData.overview}
-            image={`https://image.tmdb.org/t/p/original/${
-              tvData.backdrop_path ? tvData.backdrop_path : tvData.poster_path
-            }`}
-          />
-        )}
-        <StyledGenereWrapper>
-          {tvData &&
-            tvData.genres &&
-            tvData.genres.map((item) => (
-              <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
-            ))}
-        </StyledGenereWrapper>
-        <StyledWrapper>
-          <Button>Add to Watchlist</Button>
-          {tvData?.vote_average && (
-            <Button>{`${tvData.vote_average}/10  `}</Button>
-          )}
-          {tvData?.homepage && (
-            <Button>
-              <StyledLink target="__blank" href={tvData.homepage}>
-                Watch
-              </StyledLink>
-            </Button>
-          )}
-        </StyledWrapper>
-        {tvData?.next_episode_to_air && (
-          <div>
-            <Heading>Next Episode to Air</Heading>{' '}
-            <ListElement
-              title={tvData.next_episode_to_air.name}
-              overview={`Air date: ${tvData.next_episode_to_air.air_date}`}
-              image={tvData.poster_path}
+      {pending && !error ? (
+        <LoaderWrapper>
+          <Spinner />
+        </LoaderWrapper>
+      ) : error ? (
+        <LoaderWrapper>
+          <Heading>Sorry there is no data :( </Heading>
+        </LoaderWrapper>
+      ) : (
+        <StyledPageWrapper>
+          {tvData && (
+            <FeaturedGridElement
+              title={tvData.title}
+              about={tvData.tagline}
+              description={tvData.overview}
+              image={`https://image.tmdb.org/t/p/original/${
+                tvData.backdrop_path ? tvData.backdrop_path : tvData.poster_path
+              }`}
             />
-          </div>
-        )}
-
-        {trailerData?.results && trailerData.results.length > 0 && (
-          <>
-            <Heading>Trailer</Heading>
-            <Paragraph>Watch trailer of this TV Show</Paragraph>
-            <StyledVideoWrapper>
-              <ReactPlayer
-                width="100%"
-                height="100%"
-                url={`https://www.youtube.com/watch?v=${trailerData.results[0].key}`}
+          )}
+          <StyledGenereWrapper>
+            {tvData &&
+              tvData.genres &&
+              tvData.genres.map((item) => (
+                <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
+              ))}
+          </StyledGenereWrapper>
+          <StyledWrapper>
+            <Button>Add to Watchlist</Button>
+            {tvData?.vote_average && (
+              <Button>{`${tvData.vote_average}/10  `}</Button>
+            )}
+            {tvData?.homepage && (
+              <Button>
+                <StyledLink target="__blank" href={tvData.homepage}>
+                  Watch
+                </StyledLink>
+              </Button>
+            )}
+          </StyledWrapper>
+          {tvData?.next_episode_to_air && (
+            <div>
+              <Heading>Next Episode to Air</Heading>{' '}
+              <ListElement
+                title={tvData.next_episode_to_air.name}
+                overview={`Air date: ${tvData.next_episode_to_air.air_date}`}
+                image={tvData.poster_path}
               />
-            </StyledVideoWrapper>
-          </>
-        )}
-        <Heading>Seasons</Heading>
-        <Paragraph>All of TV Series seasons</Paragraph>
-        {tvData?.seasons &&
-          tvData.seasons.length > 0 &&
-          tvData.seasons.map((item) => (
-            <ListElement
-              title={item.name}
-              overview={item.overview}
-              image={item.poster_path}
-              key={item.id}
-            />
-          ))}
-      </StyledPageWrapper>
+            </div>
+          )}
+
+          {trailerData?.results && trailerData.results.length > 0 && (
+            <>
+              <Heading>Trailer</Heading>
+              <Paragraph>Watch trailer of this TV Show</Paragraph>
+              <StyledVideoWrapper>
+                <ReactPlayer
+                  width="100%"
+                  height="100%"
+                  url={`https://www.youtube.com/watch?v=${trailerData.results[0].key}`}
+                />
+              </StyledVideoWrapper>
+            </>
+          )}
+          <Heading>Seasons</Heading>
+          <Paragraph>All of TV Series seasons</Paragraph>
+          {tvData?.seasons &&
+            tvData.seasons.length > 0 &&
+            tvData.seasons.map((item) => (
+              <ListElement
+                title={item.name}
+                overview={item.overview}
+                image={item.poster_path}
+                key={item.id}
+              />
+            ))}
+        </StyledPageWrapper>
+      )}
     </PageTemplate>
   )
 }

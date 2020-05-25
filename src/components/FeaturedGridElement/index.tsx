@@ -14,7 +14,6 @@ type StyledWrapperProps = {
 
 const StyledWrapper = styled.div<StyledWrapperProps>`
   border-radius: 20px;
-  max-width: 1400px;
   height: 500px;
   margin-bottom: 20px;
   display: flex;

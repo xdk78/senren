@@ -11,6 +11,10 @@ const LightTheme: ThemeInterface = {
     largeInput: '#EFEFEF',
     placehoder: '#AFAFAF',
   },
+  spinner: {
+    primary: '#5199FF',
+    secondary: '#052555',
+  },
   auth: {
     background: '#FFFFFF',
     primary: '#5199FF',

@@ -4,6 +4,10 @@ export default interface ThemeInterface {
   fontColor: string
   buttonFont: string
   boxShadow: string
+  spinner: {
+    primary: string
+    secondary: string
+  }
   inputs: {
     input: string
     largeInput: string
