@@ -10,21 +10,19 @@ const Button = styled(motion.button)<StyledButtonProps>`
   color: ${({ theme }) => theme.buttonFont};
   outline: 0px;
   border: 0px;
-  border-radius: 25px;
-  width: 254px;
+  border-radius: 24px;
+  width: 248px;
   font-weight: 600;
-  height: 49px;
+  height: 48px;
   cursor: pointer;
-  margin: 10px;
+  margin: 12px 0px 0px 0px;
   box-shadow: ${({ theme }) => theme.boxShadow};
-
   ${({ large }) =>
     large &&
     css`
-      font-size: 21px;
+      font-size: 20px;
       width: 100%;
-      height: 55px;
-      border-radius: 20px;
+      height: 54px;
       background-color: ${({ theme }) => theme.auth.button};
     `}
 `

@@ -80,6 +80,7 @@ const StyledButtonWrapper = styled.div`
   width: 100%;
   display: grid;
   justify-content: center;
+  padding: 0px 0px 18px 0px;
 `
 
 const dismissDistance = 100

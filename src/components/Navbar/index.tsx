@@ -12,7 +12,6 @@ import {
   FaSlidersH,
   FaLifeRing,
 } from 'react-icons/fa'
-import Paragraph from 'components/Paragraph'
 
 type indexProps = {
   userEmail?: string
@@ -33,6 +32,7 @@ const NavWrapper = styled.div<NavWrapperProps>`
   justify-content: stretch;
   position: fixed;
   transition: 0.3s;
+  padding: 0px 8px 0px 0px;
   ${({ visible }) =>
     visible &&
     css`
@@ -43,12 +43,20 @@ const NavWrapper = styled.div<NavWrapperProps>`
   }
 `
 const TopWrapper = styled.div`
-  padding: 24px;
+  padding: 36px 0px 0px 0px;
   text-align: center;
 `
+
 const IconsWrapper = styled.div`
   padding: 0px 64px;
   flex: 1;
+`
+
+const UserWrapper = styled.div`
+  color: ${({ theme }) => theme.fontColor};
+  font-size: 18px;
+  text-align: center;
+  padding: 12px;
 `
 
 const index = ({ userEmail, isLoggedIn, visible, logout }: indexProps) => {
@@ -56,24 +64,26 @@ const index = ({ userEmail, isLoggedIn, visible, logout }: indexProps) => {
     <NavWrapper visible={visible}>
       {isLoggedIn ? (
         <TopWrapper>
-          <Paragraph>{userEmail}</Paragraph>
-          <Button onClick={logout}>Logout</Button>
+          <UserWrapper>{userEmail}</UserWrapper>
+          <Button
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ translateY: -5 }}
+            onClick={logout}
+          >
+            Logout
+          </Button>
         </TopWrapper>
       ) : (
         <TopWrapper>
           <Link href="/login">
-            <a>
-              <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
-                Log in
-              </Button>
-            </a>
+            <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
+              Log in
+            </Button>
           </Link>
           <Link href="/register">
-            <a>
-              <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
-                Register
-              </Button>
-            </a>
+            <Button whileTap={{ scale: 0.9 }} whileHover={{ translateY: -5 }}>
+              Register
+            </Button>
           </Link>
         </TopWrapper>
       )}
