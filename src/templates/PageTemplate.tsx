@@ -8,7 +8,8 @@ import MobileNav from 'components/MobileNav'
 import { Spacing, DeviceWidth } from 'themes/constants'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import firebase from 'firebase/clientApp'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
+
 type UserPageTemplateProps = {
   children: any
 }
@@ -75,6 +76,7 @@ const StyledToggleButton = styled(Button)`
 `
 
 const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
+  const router = useRouter()
   const [isHidden, setVisibility] = useState<boolean>(false)
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
   const [userEmail, setUserEmail] = useState<string>('')
@@ -91,14 +93,10 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
     firebase
       .auth()
       .signOut()
-      .then(
-        function () {
-          Router.push('/login')
-        },
-        function (error) {
-          console.log(error)
-        }
-      )
+      .then(() => {
+        router.push('/')
+      })
+      .catch((error) => console.error(error))
   }
   const ToggleNav = () => {
     setVisibility(!isHidden)

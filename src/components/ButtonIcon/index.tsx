@@ -10,6 +10,7 @@ type ButtonIconProps = {
   award?: boolean
   children?: JSX.Element
   text?: string
+  onClick?: () => void
 }
 
 const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
@@ -17,7 +18,6 @@ const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
   display: grid;
   grid-template-columns: 25px 1fr;
   margin: 35px 0px;
-  margin-left: 60px;
   font-weight: 600;
   transition: 0.2s;
   cursor: pointer;
@@ -33,7 +33,11 @@ const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
 `
 
 const WrapButton = (Icon: IconType) => (props: ButtonIconProps) => (
-  <StyledButtonIcon whileHover={{ scale: 1.1 }} award={props.award}>
+  <StyledButtonIcon
+    onClick={props.onClick}
+    whileHover={{ scale: 1.1 }}
+    award={props.award}
+  >
     <Icon {...props} />
     {props.text}
   </StyledButtonIcon>

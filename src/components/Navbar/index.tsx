@@ -43,11 +43,11 @@ const NavWrapper = styled.div<NavWrapperProps>`
   }
 `
 const TopWrapper = styled.div`
-  padding: 25px;
+  padding: 24px;
   text-align: center;
 `
 const IconsWrapper = styled.div`
-  padding: 25px;
+  padding: 0px 64px;
   flex: 1;
 `
 

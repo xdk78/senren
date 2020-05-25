@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import FormWrapper, { StyledForm } from 'components/Form'
 import AuthPageTemplate from 'templates/AuthPageTemplate'
 import Input from 'components/Input'
@@ -8,11 +8,14 @@ import Button from 'components/Button'
 import LoginImage from 'public/LoginImage.svg'
 import firebase from 'firebase/clientApp'
 import { FaGoogle } from 'react-icons/fa'
+import WrapButton from 'components/ButtonIcon'
+
 const Register = () => {
+  const router = useRouter()
   const { register, handleSubmit, setValue, watch } = useForm()
   useEffect(() => {
     if (firebase.auth().currentUser?.uid) {
-      Router.push('/')
+      router.push('/')
     }
   })
   const signInWithGoogle = () => {
@@ -21,18 +24,16 @@ const Register = () => {
       .auth()
       .signInWithPopup(provider)
       .then(() => {
-        Router.push('/')
+        router.push('/')
       })
-      .catch((error) => {
-        console.log(error)
-      })
+      .catch((error) => console.error(error))
   }
   const onSubmit = (data) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password)
-      .then(() => Router.push('/'))
-      .catch((error) => console.log(error))
+      .then(() => router.push('/'))
+      .catch((error) => console.error(error))
 
     setValue([{ email: '' }, { password: '' }, { name: '' }, { password2: '' }])
   }
@@ -65,10 +66,14 @@ const Register = () => {
           <Button type="submit" large>
             Register
           </Button>
-          <Button onClick={signInWithGoogle} large>
+          {WrapButton(FaGoogle)({
+            text: ' Sign in with Google',
+            onClick: () => signInWithGoogle(),
+          })}
+          {/* <Button >
             <FaGoogle />
             Sign in with Google
-          </Button>
+          </Button> */}
         </StyledForm>
       </FormWrapper>
       <img src={LoginImage} alt="img" />
