@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from 'utils/styled-components'
 import { motion } from 'framer-motion'
 import Navbar from 'components/Navbar'
@@ -7,7 +7,8 @@ import Footer from 'components/Footer'
 import MobileNav from 'components/MobileNav'
 import { Spacing, DeviceWidth } from 'themes/constants'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
-
+import firebase from 'firebase/clientApp'
+import Router from 'next/router'
 type UserPageTemplateProps = {
   children: any
 }
@@ -75,13 +76,42 @@ const StyledToggleButton = styled(Button)`
 
 const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
   const [isHidden, setVisibility] = useState<boolean>(false)
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
+  const [userEmail, setUserEmail] = useState<string>('')
+  useEffect(() => {
+    const user = firebase.auth().currentUser
+    if (user) {
+      setLoggedIn(true)
+      setUserEmail(user.email)
+    } else {
+      setLoggedIn(false)
+    }
+  })
+  const Logout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(
+        function () {
+          Router.push('/login')
+        },
+        function (error) {
+          console.log(error)
+        }
+      )
+  }
   const ToggleNav = () => {
     setVisibility(!isHidden)
   }
   return (
     <>
       <MobileNav />
-      <Navbar visible={isHidden} isLoggedIn={false} />
+      <Navbar
+        visible={isHidden}
+        isLoggedIn={isLoggedIn}
+        userEmail={userEmail}
+        logout={Logout}
+      />
       <StyledWrapper>
         <StyledInnerWrapper visible={isHidden}>
           <StyledToggleButton whileTap={{ scale: 0.9 }} onClick={ToggleNav}>

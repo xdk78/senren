@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import FormWrapper, { StyledForm } from 'components/Form'
 import AuthPageTemplate from 'templates/AuthPageTemplate'
 import Input from 'components/Input'
 import Button from 'components/Button'
 import LoginImage from 'public/LoginImage.svg'
+import firebase from 'firebase/clientApp'
+import Router from 'next/router'
 
 const Login = () => {
   const { register, handleSubmit, setValue } = useForm()
+  useEffect(() => {
+    if (firebase.auth().currentUser?.uid) {
+      Router.push('/')
+    }
+  })
   const onSubmit = (data) => {
-    console.log(data)
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(data.email, data.password)
+      .then(() => Router.push('/'))
+      .catch((error) => console.log(error))
     setValue([{ email: '' }, { password: '' }])
   }
   return (
@@ -33,7 +44,7 @@ const Login = () => {
           </Button>
         </StyledForm>
       </FormWrapper>
-      <LoginImage />
+      <img src={LoginImage} alt="img" />
     </AuthPageTemplate>
   )
 }

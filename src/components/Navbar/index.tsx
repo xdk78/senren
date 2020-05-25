@@ -12,12 +12,13 @@ import {
   FaSlidersH,
   FaLifeRing,
 } from 'react-icons/fa'
+import Paragraph from 'components/Paragraph'
 
 type indexProps = {
-  username?: string
   userEmail?: string
   isLoggedIn: boolean
   visible?: boolean
+  logout?: () => void
 }
 type NavWrapperProps = {
   visible?: boolean
@@ -50,14 +51,13 @@ const IconsWrapper = styled.div`
   flex: 1;
 `
 
-const index = ({ username, userEmail, isLoggedIn, visible }: indexProps) => {
+const index = ({ userEmail, isLoggedIn, visible, logout }: indexProps) => {
   return (
     <NavWrapper visible={visible}>
       {isLoggedIn ? (
         <TopWrapper>
-          <h3>{username}</h3>
-          <p>{userEmail}</p>
-          <p>Logout</p>
+          <Paragraph>{userEmail}</Paragraph>
+          <Button onClick={logout}>Logout</Button>
         </TopWrapper>
       ) : (
         <TopWrapper>
