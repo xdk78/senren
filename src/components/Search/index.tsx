@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Input from 'components/Input'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 
 type SearchProps = {
   placeholder: string
@@ -8,8 +8,9 @@ type SearchProps = {
 
 const Search = ({ placeholder }: SearchProps) => {
   const [inputValue, setInputValue] = useState<string>('')
+  const router = useRouter()
   const OnSubmit = () => {
-    Router.push(`/search/${inputValue}`)
+    router.push(`/search/${inputValue}`)
   }
   return (
     <form onSubmit={OnSubmit}>

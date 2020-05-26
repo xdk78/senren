@@ -42,8 +42,12 @@ export const fetchDiscoverError: ActionCreator<FetchDiscoverError> = (
 export const fetchDiscover = () => async (dispatch) => {
   try {
     dispatch(fetchDiscoverPending())
-    const tvRes = await apiClient(`discover/tv`, { method: 'GET' })
-    const movieRes = await apiClient(`discover/movie`, { method: 'GET' })
+    const tvRes = await apiClient(`discover/tv`, {
+      method: 'GET',
+    })
+    const movieRes = await apiClient(`discover/movie`, {
+      method: 'GET',
+    })
     dispatch(fetchDiscoverSuccess(tvRes.data, movieRes.data))
   } catch (error) {
     dispatch(fetchDiscoverError(error.toString()))
