@@ -81,27 +81,48 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
   const [isHidden, setVisibility] = useState<boolean>(false)
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
   const [userEmail, setUserEmail] = useState<string>('')
+
+  const [user, setUser] = useState(null)
+  const [loadingUser, setLoadingUser] = useState(true) // Helpful, to update the UI accordingly.
+
   useEffect(() => {
-    const user = firebase.auth().currentUser
-    if (user) {
-      setLoggedIn(true)
-      setUserEmail(user.email)
-    } else {
-      setLoggedIn(false)
-    }
-  })
+    // Listen authenticated user
+    const unsubscriber = firebase.auth().onAuthStateChanged(async (user) => {
+      try {
+        if (user) {
+          const { uid, displayName, email, photoURL } = user
+
+          setUser({ uid, displayName, email, photoURL })
+          setLoggedIn(true)
+          setUserEmail(email)
+        } else {
+          setUser(null)
+        }
+      } catch (error) {
+        // Most probably a connection error. Handle appropiately.
+      } finally {
+        setLoadingUser(false)
+      }
+    })
+
+    // Unsubscribe auth listener on unmount
+    return () => unsubscriber()
+  }, [])
+
   const Logout = () => {
     firebase
       .auth()
       .signOut()
       .then(() => {
+        setUser(null)
+        setLoggedIn(false)
         router.push('/')
       })
       .catch((error) => console.error(error))
   }
-  const ToggleNav = () => {
-    setVisibility(!isHidden)
-  }
+
+  const ToggleNav = () => setVisibility(!isHidden)
+
   return (
     <>
       <MobileNav />
