@@ -63,7 +63,7 @@ const MobileNav = () => {
         </Link>
       </IconWrapper>
       <IconWrapper>
-        <Link href="/">
+        <Link href="/watchlist">
           <StyledLink>
             <FaStar />
           </StyledLink>

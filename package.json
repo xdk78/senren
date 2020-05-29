@@ -19,6 +19,15 @@
     ]
   },
   "dependencies": {
+    "@vx/event": "0.0.196",
+    "@vx/glyph": "0.0.196",
+    "@vx/gradient": "0.0.196",
+    "@vx/grid": "0.0.196",
+    "@vx/group": "0.0.196",
+    "@vx/mock-data": "0.0.196",
+    "@vx/scale": "0.0.196",
+    "@vx/shape": "0.0.196",
+    "@vx/tooltip": "0.0.196",
     "axios": "^0.19.2",
     "firebase": "^7.14.5",
     "framer-motion": "^1.11.0",

@@ -91,7 +91,9 @@ const index = ({ userEmail, isLoggedIn, visible, logout }: indexProps) => {
         <Link href="/">{WrapButton(FaSearch)({ text: 'Explore' })}</Link>
         <Link href="/movie">{WrapButton(FaVideo)({ text: 'Movies' })}</Link>
         <Link href="/tv">{WrapButton(FaFilm)({ text: 'TV Shows' })}</Link>
-        <Link href="/">{WrapButton(FaPhotoVideo)({ text: 'Watchlist' })}</Link>
+        <Link href="/watchlist">
+          {WrapButton(FaPhotoVideo)({ text: 'Watchlist' })}
+        </Link>
         <Link href="/">{WrapButton(FaStar)({ text: 'Favourite' })}</Link>
         <Link href="/">{WrapButton(FaSlidersH)({ text: 'Settings' })}</Link>
         <Link href="/">
