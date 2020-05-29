@@ -13,7 +13,7 @@ const Watchlist = () => {
       <StyledPageWrapper>
         <Heading>Rating analyst</Heading>
         <Paragraph>Your collection</Paragraph>
-        <Graph width={1200} height={480} />
+        <Graph width={1100} height={480} />
         <Heading>Top-Rated Generes</Heading>
         <Paragraph>Your collection</Paragraph>
         <div>Graph</div>

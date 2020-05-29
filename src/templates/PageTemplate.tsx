@@ -41,6 +41,7 @@ export const GridWrapper = styled(motion.div)`
   grid-auto-flow: dense;
 `
 const StyledWrapper = styled.div`
+  color: ${({ theme }) => theme.fontColor};
   background-color: ${({ theme }) => theme.background};
   min-height: 100vh;
 `

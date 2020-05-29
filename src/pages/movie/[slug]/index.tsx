@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { fetchMovie } from 'actions/movieActions'
@@ -10,6 +10,10 @@ import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import Spinner, { LoaderWrapper } from 'components/Spinner'
+import firebase from 'firebase/clientApp'
+import { addToWatchlist } from 'actions/watchlistActions'
+import { EntryType } from 'actions/trendingActions'
+
 const StyledWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -40,19 +44,41 @@ const StyledLink = styled.a`
   text-decoration: none;
 `
 
-const Index = ({ fetchMovie, movieData, trailerData, pending, error }) => {
+const Index = ({
+  fetchMovie,
+  movieData,
+  trailerData,
+  moviePending,
+  movieError,
+  addToWatchlist,
+}) => {
   const router = useRouter()
   useEffect(() => {
     const { slug } = router.query
     fetchMovie(slug)
   }, [])
+
+  const onAddToWatchlist = useCallback(() => {
+    const user = firebase.auth().currentUser
+    if (user && movieData && !movieError) {
+      addToWatchlist('movie', user, {
+        title: movieData.title,
+        tmdbId: movieData.id,
+      })
+
+      console.log('added to watchlist')
+    } else {
+      console.error('user is not logged in')
+    }
+  }, [movieData])
+
   return (
     <PageTemplate>
-      {pending && !error ? (
+      {moviePending && !movieError ? (
         <LoaderWrapper>
           <Spinner />
         </LoaderWrapper>
-      ) : error ? (
+      ) : movieError ? (
         <LoaderWrapper>
           <Heading>Sorry there is no data :(</Heading>
         </LoaderWrapper>
@@ -78,7 +104,7 @@ const Index = ({ fetchMovie, movieData, trailerData, pending, error }) => {
               ))}
           </StyledGenereWrapper>
           <StyledWrapper>
-            <Button>Add to Watchlist</Button>
+            <Button onClick={onAddToWatchlist}>Add to Watchlist</Button>
             {movieData && <Button>{`${movieData.vote_average}/10  `}</Button>}
             {movieData && (
               <Button>
@@ -111,13 +137,19 @@ const mapStateToProps = (state, props) => ({
   ...props,
   movieData: state.movieState.movieData,
   trailerData: state.movieState.trailerData,
-  pending: state.movieState.isPending,
-  error: state.movieState.error,
+  moviePending: state.movieState.isPending,
+  movieError: state.movieState.error,
+  watchlistSuccess: state.watchlistState.success,
+  watchlistPending: state.watchlistState.isPending,
+  watchlistError: state.watchlistState.error,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchMovie: (slug) => {
     dispatch(fetchMovie(slug))
+  },
+  addToWatchlist: (type: EntryType, user: firebase.User, data) => {
+    dispatch(addToWatchlist(type, user, data))
   },
 })
 

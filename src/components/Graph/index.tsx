@@ -31,7 +31,7 @@ const letters = letterFrequency.slice(0, 4)
 const usage = (d) => d.usage
 const frequency = (d) => d.frequency
 
-export default ({ width, height }) => {
+export default function Graph({ width, height }) {
   const radius = Math.min(width, height) / 2
   const centerY = height / 2
   const centerX = width / 2
