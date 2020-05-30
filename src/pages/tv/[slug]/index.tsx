@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import styled from 'utils/styled-components'
 import { useRouter } from 'next/router'
 import { connect } from 'react-redux'
@@ -11,6 +11,9 @@ import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import ReactPlayer from 'react-player'
 import Spinner, { LoaderWrapper } from 'components/Spinner'
+import { addToWatchlist } from 'actions/watchlistActions'
+import { EntryType } from 'actions/trendingActions'
+import firebase from 'firebase/clientApp'
 
 const StyledVideoWrapper = styled.div`
   display: grid;
@@ -42,12 +45,33 @@ const StyledGenereItem = styled.p`
   margin: 10px;
 `
 
-const TvSeries = ({ fetchTv, tvData, trailerData, pending, error }) => {
+const TvSeries = ({
+  fetchTv,
+  tvData,
+  trailerData,
+  pending,
+  error,
+  addToWatchlist,
+}) => {
   const router = useRouter()
   useEffect(() => {
     const { slug } = router.query
     fetchTv(slug)
   }, [])
+
+  const onAddToWatchlist = useCallback(() => {
+    const user = firebase.auth().currentUser
+    if (user && tvData && !error) {
+      addToWatchlist('tv', user, {
+        title: tvData.title,
+        tmdbId: tvData.id,
+        poster_path: tvData.poster_path,
+      })
+      alert('Added to watchlist')
+    } else {
+      console.error('user is not logged in')
+    }
+  }, [tvData])
   return (
     <PageTemplate>
       {pending && !error ? (
@@ -78,7 +102,7 @@ const TvSeries = ({ fetchTv, tvData, trailerData, pending, error }) => {
               ))}
           </StyledGenereWrapper>
           <StyledWrapper>
-            <Button>Add to Watchlist</Button>
+            <Button onClick={onAddToWatchlist}>Add to Watchlist</Button>
             {tvData?.vote_average && (
               <Button>{`${tvData.vote_average}/10  `}</Button>
             )}
@@ -138,11 +162,17 @@ const mapStateToProps = (state, props) => ({
   trailerData: state.tvState.trailerData,
   pending: state.tvState.isPending,
   error: state.tvState.error,
+  watchlistSuccess: state.watchlistState.success,
+  watchlistPending: state.watchlistState.isPending,
+  watchlistError: state.watchlistState.error,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTv: (slug) => {
     dispatch(fetchTv(slug))
+  },
+  addToWatchlist: (type: EntryType, user: firebase.User, data) => {
+    dispatch(addToWatchlist(type, user, data))
   },
 })
 

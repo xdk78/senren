@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PageTemplate, {
   GridWrapper,
   StyledPageWrapper,
@@ -7,7 +7,25 @@ import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import Input from 'components/Input'
 import Graph from 'components/Graph'
-const Watchlist = () => {
+import { connect } from 'react-redux'
+import { fetchMovieWatchlist, fetchTvWatchlist } from 'actions/watchlistActions'
+import firebase from 'firebase/clientApp'
+import { fadeInUp, stagger } from 'utils/animations'
+import GridElement from 'components/GridElement'
+
+const Watchlist = ({
+  movieData,
+  tvData,
+  fetchMovieWatchlist,
+  fetchTvWatchlist,
+}) => {
+  useEffect(() => {
+    const user = firebase.auth().currentUser
+    if (user) {
+      fetchMovieWatchlist(user)
+      fetchTvWatchlist(user)
+    }
+  }, [])
   return (
     <PageTemplate>
       <StyledPageWrapper>
@@ -18,18 +36,76 @@ const Watchlist = () => {
         <Paragraph>Your collection</Paragraph>
         <div>Graph</div>
         <Input large placeholder="Filter watchlist..." />
-        <Heading>Watching</Heading>
-        <Paragraph>Your collection</Paragraph>
-        <GridWrapper></GridWrapper>
-        <Heading>Planning to watch</Heading>
-        <Paragraph>Your collection</Paragraph>
-        <GridWrapper></GridWrapper>
-        <Heading>Completed</Heading>
-        <Paragraph>Your collection</Paragraph>
-        <GridWrapper></GridWrapper>
+        {movieData && movieData.length > 0 && (
+          <>
+            <Heading>Movies</Heading>
+            <Paragraph>Your movies to watch</Paragraph>
+          </>
+        )}
+        <GridWrapper
+          variants={stagger}
+          initial="initial"
+          animate="animate"
+          exit={{ opacity: 0 }}
+        >
+          {movieData &&
+            movieData.length > 0 &&
+            movieData.map((item) => (
+              <GridElement
+                key={item.tmdbId}
+                variants={fadeInUp}
+                title={item.title}
+                content={''}
+                link={`/movie/${item.tmdbId}`}
+                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+              />
+            ))}
+        </GridWrapper>
+        {tvData && tvData.length > 0 && (
+          <>
+            <Heading>TV Shows</Heading>
+            <Paragraph>Your Tv Shows to watch</Paragraph>
+          </>
+        )}
+        <GridWrapper
+          variants={stagger}
+          initial="initial"
+          animate="animate"
+          exit={{ opacity: 0 }}
+        >
+          {tvData &&
+            tvData.length > 0 &&
+            tvData.map((item) => (
+              <GridElement
+                key={item.tmdbId}
+                variants={fadeInUp}
+                title={item.title}
+                content={''}
+                link={`/tv/${item.tmdbId}`}
+                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+              />
+            ))}
+        </GridWrapper>
       </StyledPageWrapper>
     </PageTemplate>
   )
 }
 
-export default Watchlist
+const mapStateToProps = (state, props) => ({
+  ...props,
+  movieData: state.watchlistState.movieWatchlistData,
+  tvData: state.watchlistState.tvWatchlistData,
+  watchlistPending: state.watchlistState.isPending,
+  watchlistError: state.watchlistState.error,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchMovieWatchlist: (user: firebase.User) => {
+    dispatch(fetchMovieWatchlist(user))
+  },
+  fetchTvWatchlist: (user: firebase.User) => {
+    dispatch(fetchTvWatchlist(user))
+  },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Watchlist)

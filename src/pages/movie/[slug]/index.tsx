@@ -64,9 +64,9 @@ const Index = ({
       addToWatchlist('movie', user, {
         title: movieData.title,
         tmdbId: movieData.id,
+        poster_path: movieData.poster_path,
       })
-
-      console.log('added to watchlist')
+      alert('Added to watchlist')
     } else {
       console.error('user is not logged in')
     }
