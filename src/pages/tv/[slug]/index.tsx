@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'utils/styled-components'
 import { useRouter } from 'next/router'
 import { connect } from 'react-redux'
@@ -14,6 +14,11 @@ import Spinner, { LoaderWrapper } from 'components/Spinner'
 import { addToWatchlist } from 'actions/watchlistActions'
 import { EntryType } from 'actions/trendingActions'
 import firebase from 'firebase/clientApp'
+import {
+  StyledOption,
+  StyledSelectWrapper,
+  StyledSelect,
+} from 'pages/movie/[slug]'
 
 const StyledVideoWrapper = styled.div`
   display: grid;
@@ -53,25 +58,37 @@ const TvSeries = ({
   error,
   addToWatchlist,
 }) => {
+  const [isSelected, setIsSelected] = useState<boolean>(true)
+  const [selection, setSelection] = useState<string>('select')
   const router = useRouter()
   useEffect(() => {
     const { slug } = router.query
     fetchTv(slug)
   }, [])
 
-  const onAddToWatchlist = useCallback(() => {
-    const user = firebase.auth().currentUser
-    if (user && tvData && !error) {
-      addToWatchlist('tv', user, {
-        title: tvData.title,
-        tmdbId: tvData.id,
-        poster_path: tvData.poster_path,
-      })
-      alert('Added to watchlist')
-    } else {
-      console.error('user is not logged in')
-    }
-  }, [tvData])
+  const HandleSelection = (e) => {
+    setIsSelected(false)
+    setSelection(e.target.value)
+  }
+
+  const onAddToWatchlist = useCallback(
+    (type) => (e) => {
+      const user = firebase.auth().currentUser
+      if (user && tvData && !error) {
+        addToWatchlist('tv', user, {
+          title: tvData.title,
+          tmdbId: tvData.id,
+          poster_path: tvData.poster_path,
+          type: type,
+        })
+        alert('Added to watchlist')
+      } else {
+        console.error('user is not logged in')
+      }
+    },
+    [tvData]
+  )
+
   return (
     <PageTemplate>
       {pending && !error ? (
@@ -102,7 +119,27 @@ const TvSeries = ({
               ))}
           </StyledGenereWrapper>
           <StyledWrapper>
-            <Button onClick={onAddToWatchlist}>Add to Watchlist</Button>
+            <StyledSelectWrapper>
+              <StyledSelect
+                name="watchlist_type"
+                value={selection}
+                onChange={HandleSelection}
+              >
+                <StyledOption value="select" disabled={true}>
+                  Select
+                </StyledOption>
+                <StyledOption value="WATCHING">Watching</StyledOption>
+                <StyledOption value="PLAN_TO_WATCH">Plan To Watch</StyledOption>
+                <StyledOption value="COMPLETED">Completed</StyledOption>
+                <StyledOption value="DROPPED">Dropped</StyledOption>
+              </StyledSelect>
+              <Button
+                disabled={isSelected}
+                onClick={onAddToWatchlist(selection)}
+              >
+                Add to Watchlist
+              </Button>
+            </StyledSelectWrapper>
             {tvData?.vote_average && (
               <Button>{`${tvData.vote_average}/10  `}</Button>
             )}

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { fetchMovie } from 'actions/movieActions'
@@ -20,6 +20,7 @@ const StyledWrapper = styled.div`
   justify-items: center;
   width: 100%;
 `
+
 const StyledGenereWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -44,6 +45,27 @@ const StyledLink = styled.a`
   text-decoration: none;
 `
 
+export const StyledSelectWrapper = styled.div`
+  display: grid;
+  background: transparent;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  justify-items: center;
+  align-items: center;
+`
+
+export const StyledSelect = styled.select`
+  background: transparent;
+  color: ${({ theme }) => theme.fontColor};
+  padding: 4px;
+  margin: 12px 12px 0px 0px;
+  border-radius: 8px;
+`
+
+export const StyledOption = styled.option`
+  color: ${({ theme }) => theme.fontColor};
+  background: ${({ theme }) => theme.auth.background};
+`
+
 const Index = ({
   fetchMovie,
   movieData,
@@ -52,25 +74,36 @@ const Index = ({
   movieError,
   addToWatchlist,
 }) => {
+  const [isSelected, setIsSelected] = useState<boolean>(true)
+  const [selection, setSelection] = useState<string>('select')
   const router = useRouter()
   useEffect(() => {
     const { slug } = router.query
     fetchMovie(slug)
   }, [])
 
-  const onAddToWatchlist = useCallback(() => {
-    const user = firebase.auth().currentUser
-    if (user && movieData && !movieError) {
-      addToWatchlist('movie', user, {
-        title: movieData.title,
-        tmdbId: movieData.id,
-        poster_path: movieData.poster_path,
-      })
-      alert('Added to watchlist')
-    } else {
-      console.error('user is not logged in')
-    }
-  }, [movieData])
+  const HandleSelection = (e) => {
+    setIsSelected(false)
+    setSelection(e.target.value)
+  }
+
+  const onAddToWatchlist = useCallback(
+    (type) => (e) => {
+      const user = firebase.auth().currentUser
+      if (user && movieData && !movieError) {
+        addToWatchlist('movie', user, {
+          title: movieData.title,
+          tmdbId: movieData.id,
+          poster_path: movieData.poster_path,
+          type: type,
+        })
+        alert('Added to watchlist')
+      } else {
+        console.error('user is not logged in')
+      }
+    },
+    [movieData]
+  )
 
   return (
     <PageTemplate>
@@ -104,7 +137,27 @@ const Index = ({
               ))}
           </StyledGenereWrapper>
           <StyledWrapper>
-            <Button onClick={onAddToWatchlist}>Add to Watchlist</Button>
+            <StyledSelectWrapper>
+              <StyledSelect
+                name="watchlist_type"
+                value={selection}
+                onChange={HandleSelection}
+              >
+                <StyledOption value="select" disabled={true}>
+                  Select
+                </StyledOption>
+                <StyledOption value="WATCHING">Watching</StyledOption>
+                <StyledOption value="PLAN_TO_WATCH">Plan To Watch</StyledOption>
+                <StyledOption value="COMPLETED">Completed</StyledOption>
+                <StyledOption value="DROPPED">Dropped</StyledOption>
+              </StyledSelect>
+              <Button
+                disabled={isSelected}
+                onClick={onAddToWatchlist(selection)}
+              >
+                Add to Watchlist
+              </Button>
+            </StyledSelectWrapper>
             {movieData && <Button>{`${movieData.vote_average}/10  `}</Button>}
             {movieData && (
               <Button>

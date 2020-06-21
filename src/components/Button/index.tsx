@@ -25,6 +25,10 @@ const Button = styled(motion.button)<StyledButtonProps>`
       height: 54px;
       background-color: ${({ theme }) => theme.auth.button};
     `}
+  &:disabled {
+    background-color: ${({ theme }) => theme.inputs.largeInput};
+    cursor: default;
+  }
 `
 
 export default Button
