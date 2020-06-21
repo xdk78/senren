@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PageTemplate, {
   GridWrapper,
   StyledPageWrapper,
@@ -26,6 +26,12 @@ const Watchlist = ({
       fetchTvWatchlist(user)
     }
   }, [])
+  const [inputValue, setInputValue] = useState('')
+
+  const onInputChange = (e) => {
+    setInputValue(e.target.value)
+  }
+
   return (
     <PageTemplate>
       <StyledPageWrapper>
@@ -35,7 +41,12 @@ const Watchlist = ({
         <Heading>Top-Rated Generes</Heading>
         <Paragraph>Your collection</Paragraph>
         <div>Graph</div>
-        <Input large placeholder="Filter watchlist..." />
+        <Input
+          value={inputValue}
+          large
+          placeholder="Filter watchlist..."
+          onChange={onInputChange}
+        />
         {movieData && movieData.length > 0 && (
           <>
             <Heading>Movies</Heading>
@@ -50,16 +61,20 @@ const Watchlist = ({
         >
           {movieData &&
             movieData.length > 0 &&
-            movieData.map((item) => (
-              <GridElement
-                key={item.tmdbId}
-                variants={fadeInUp}
-                title={item.title}
-                content={''}
-                link={`/movie/${item.tmdbId}`}
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-              />
-            ))}
+            movieData
+              .filter((item) =>
+                item.title.toLowerCase().includes(inputValue.toLowerCase())
+              )
+              .map((item) => (
+                <GridElement
+                  key={item.tmdbId}
+                  variants={fadeInUp}
+                  title={item.title}
+                  content={''}
+                  link={`/movie/${item.tmdbId}`}
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                />
+              ))}
         </GridWrapper>
         {tvData && tvData.length > 0 && (
           <>
@@ -75,16 +90,20 @@ const Watchlist = ({
         >
           {tvData &&
             tvData.length > 0 &&
-            tvData.map((item) => (
-              <GridElement
-                key={item.tmdbId}
-                variants={fadeInUp}
-                title={item.title}
-                content={''}
-                link={`/tv/${item.tmdbId}`}
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-              />
-            ))}
+            tvData
+              .filter((item) =>
+                item.title.toLowerCase().includes(inputValue.toLowerCase())
+              )
+              .map((item) => (
+                <GridElement
+                  key={item.tmdbId}
+                  variants={fadeInUp}
+                  title={item.title}
+                  content={''}
+                  link={`/tv/${item.tmdbId}`}
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                />
+              ))}
         </GridWrapper>
       </StyledPageWrapper>
     </PageTemplate>
