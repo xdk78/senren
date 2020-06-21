@@ -28,10 +28,6 @@ const Watchlist = ({
   }, [])
   const [inputValue, setInputValue] = useState('')
 
-  const onInputChange = (e) => {
-    setInputValue(e.target.value)
-  }
-
   return (
     <PageTemplate>
       <StyledPageWrapper>
@@ -45,7 +41,7 @@ const Watchlist = ({
           value={inputValue}
           large
           placeholder="Filter watchlist..."
-          onChange={onInputChange}
+          onChange={(e) => setInputValue(e.target.value)}
         />
         {movieData && movieData.length > 0 && (
           <>
