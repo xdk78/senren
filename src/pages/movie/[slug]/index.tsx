@@ -55,6 +55,7 @@ const Index = ({
           title: movieData.title,
           tmdbId: movieData.id,
           poster_path: movieData.poster_path,
+          overview: movieData.overview,
           type: type,
         })
         alert('Added to watchlist')

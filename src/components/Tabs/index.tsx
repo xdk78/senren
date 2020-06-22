@@ -255,7 +255,7 @@ export const GridTab = ({ data, type, inputValue, dataType }) => (
             key={item.tmdbId}
             variants={fadeInUp}
             title={item.title}
-            content={''}
+            content={item.overview}
             link={`/${dataType}/${item.tmdbId}`}
             src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
           />

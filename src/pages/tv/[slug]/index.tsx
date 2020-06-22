@@ -56,6 +56,7 @@ const TvSeries = ({
           title: tvData.title,
           tmdbId: tvData.id,
           poster_path: tvData.poster_path,
+          overview: tvData.overview,
           type: type,
         })
         alert('Added to watchlist')

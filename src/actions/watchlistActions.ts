@@ -67,6 +67,7 @@ export const addToWatchlist = (
           tmdbId: data.tmdbId.toString(),
           title: data.title,
           poster_path: data.poster_path,
+          overview: data.overview,
           type: data.type,
         },
         { merge: true }
