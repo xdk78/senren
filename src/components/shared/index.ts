@@ -44,6 +44,7 @@ export const StyledGenereWrapper = styled.div`
 
 export const StyledGenereItem = styled.p`
   border: 2px solid ${({ theme }) => theme.primary};
+  border-radius: 12px;
   padding: 12px;
   color: ${({ theme }) => theme.fontColor};
   margin: 12px 12px 12px 0px;
@@ -52,7 +53,6 @@ export const StyledGenereItem = styled.p`
 export const StyledSelectWrapper = styled.div`
   display: flex;
   background: transparent;
-  /* grid-template-columns: repeat(2, minmax(200px, 1fr)); */
   justify-items: center;
   align-items: center;
 `
@@ -60,7 +60,8 @@ export const StyledSelectWrapper = styled.div`
 export const StyledSelect = styled.select`
   background: transparent;
   color: ${({ theme }) => theme.fontColor};
-  padding: 4px;
+  border: 1px solid ${({ theme }) => theme.primary};
+  padding: 8px;
   margin: 12px 12px 0px 0px;
   border-radius: 8px;
 `

@@ -1,7 +1,7 @@
 import ThemeInterface from '.'
 
 const LightTheme: ThemeInterface = {
-  primary: '#5199FF',
+  primary: '#8103f4',
   background: '#FFFFFF',
   fontColor: '#000000',
   buttonFont: '#FFFFFF',
@@ -12,13 +12,13 @@ const LightTheme: ThemeInterface = {
     placehoder: '#AFAFAF',
   },
   spinner: {
-    primary: '#5199FF',
+    primary: '#8103f4',
     secondary: '#052555',
   },
   auth: {
     background: '#FFFFFF',
     primary: '#5199FF',
-    button: '#052555',
+    button: '#8103f4',
   },
   nav: {
     background: '#F8F6FA',

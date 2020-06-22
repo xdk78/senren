@@ -1,13 +1,13 @@
 import ThemeInterface from '.'
 
 const DarkTheme: ThemeInterface = {
-  primary: '#052555',
+  primary: '#8103f4',
   background: '#000000',
   fontColor: '#FFFFFF',
   buttonFont: '#FFFFFF',
   boxShadow: '',
   spinner: {
-    primary: '#5199FF',
+    primary: '#8103f4',
     secondary: '#052555',
   },
   inputs: {
@@ -18,7 +18,7 @@ const DarkTheme: ThemeInterface = {
   auth: {
     background: '#01142F',
     primary: '#052555',
-    button: '#5199FF',
+    button: '#8103f4',
   },
   nav: {
     background: '#131313',

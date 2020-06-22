@@ -20,18 +20,17 @@ const StyledTabsButtons = styled(motion.button)<{ active }>`
   cursor: pointer;
   padding: 24px 16px;
   color: ${({ theme }) => theme.fontColor};
-  font-weight: 600;
-  transition: 0.3s;
   @media (max-width: 748px) {
     padding: 10px 12px;
   }
   &:hover {
-    color: ${({ theme }) => theme.auth.button};
+    color: ${({ theme }) => theme.primary};
   }
   ${({ active }) =>
     active &&
     css`
-      color: ${({ theme }) => theme.auth.button};
+      color: ${({ theme }) => theme.primary};
+      font-weight: 600;
     `}
 `
 
