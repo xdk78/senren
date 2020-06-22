@@ -122,6 +122,7 @@ export const fetchMovieWatchlist = (user: firebase.User) => async (
       .collection('watchlist')
       .doc('movie')
       .collection('items')
+      .limit(30)
       .onSnapshot((snapshot) => {
         const dataFromCollection = snapshot.docs.map(documentsCollection)
         dispatch(fetchMovieWatchlistSuccess(dataFromCollection))
@@ -179,6 +180,7 @@ export const fetchTvWatchlist = (user: firebase.User) => async (dispatch) => {
       .collection('watchlist')
       .doc('tv')
       .collection('items')
+      .limit(30)
       .onSnapshot((snapshot) => {
         const dataFromCollection = snapshot.docs.map(documentsCollection)
         dispatch(fetchTvWatchlistSuccess(dataFromCollection))

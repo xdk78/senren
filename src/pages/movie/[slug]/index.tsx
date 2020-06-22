@@ -88,7 +88,7 @@ const Index = ({
   }
 
   const onAddToWatchlist = useCallback(
-    (type) => (e) => {
+    (type) => () => {
       const user = firebase.auth().currentUser
       if (user && movieData && !movieError) {
         addToWatchlist('movie', user, {
