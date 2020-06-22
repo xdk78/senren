@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'utils/styled-components'
 import { motion } from 'framer-motion'
 import Navbar from 'components/Navbar'
@@ -7,12 +7,7 @@ import Footer from 'components/Footer'
 import MobileNav from 'components/MobileNav'
 import { Spacing, DeviceWidth } from 'themes/constants'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
-import firebase from 'firebase/clientApp'
-import { useRouter } from 'next/router'
-
-type UserPageTemplateProps = {
-  children: any
-}
+import withAuth from 'utils/withAuth'
 
 type StyledWrapperProps = {
   visible?: boolean
@@ -40,6 +35,7 @@ export const GridWrapper = styled(motion.div)`
   grid-gap: 20px;
   grid-auto-flow: dense;
 `
+
 const StyledWrapper = styled.div`
   color: ${({ theme }) => theme.fontColor};
   background-color: ${({ theme }) => theme.background};
@@ -76,61 +72,17 @@ const StyledToggleButton = styled(Button)`
   }
 `
 
-const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
-  const router = useRouter()
+const UserPageTemplate = ({ children, user, logout, isLoggedIn }) => {
   const [isHidden, setVisibility] = useState<boolean>(false)
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
-  const [userEmail, setUserEmail] = useState<string>('')
-
-  const [user, setUser] = useState(null)
-  const [loadingUser, setLoadingUser] = useState(true) // Helpful, to update the UI accordingly.
-
-  useEffect(() => {
-    // Listen authenticated user
-    const unsubscriber = firebase.auth().onAuthStateChanged(async (user) => {
-      try {
-        if (user) {
-          const { uid, displayName, email, photoURL } = user
-
-          setUser({ uid, displayName, email, photoURL })
-          setLoggedIn(true)
-          setUserEmail(email)
-        } else {
-          setUser(null)
-        }
-      } catch (error) {
-        // Most probably a connection error. Handle appropiately.
-      } finally {
-        setLoadingUser(false)
-      }
-    })
-
-    // Unsubscribe auth listener on unmount
-    return () => unsubscriber()
-  }, [])
-
-  const Logout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        setUser(null)
-        setLoggedIn(false)
-        router.push('/')
-      })
-      .catch((error) => console.error(error))
-  }
-
   const ToggleNav = () => setVisibility(!isHidden)
-
   return (
     <>
       <MobileNav />
       <Navbar
         visible={isHidden}
         isLoggedIn={isLoggedIn}
-        userEmail={userEmail}
-        logout={Logout}
+        userEmail={user ? user.displayName : ''}
+        logout={logout}
       />
       <StyledWrapper>
         <StyledInnerWrapper visible={isHidden}>
@@ -145,4 +97,4 @@ const UserPageTemplate = ({ children }: UserPageTemplateProps) => {
   )
 }
 
-export default UserPageTemplate
+export default withAuth(UserPageTemplate)

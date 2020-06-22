@@ -13,6 +13,7 @@ import Spinner, { LoaderWrapper } from 'components/Spinner'
 import firebase from 'firebase/clientApp'
 import { addToWatchlist } from 'actions/watchlistActions'
 import { EntryType } from 'actions/trendingActions'
+import withAuth from 'utils/withAuth'
 
 const StyledWrapper = styled.div`
   display: grid;
@@ -73,6 +74,7 @@ const Index = ({
   moviePending,
   movieError,
   addToWatchlist,
+  user,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const [selection, setSelection] = useState<string>('select')
@@ -89,7 +91,6 @@ const Index = ({
 
   const onAddToWatchlist = useCallback(
     (type) => () => {
-      const user = firebase.auth().currentUser
       if (user && movieData && !movieError) {
         addToWatchlist('movie', user, {
           title: movieData.title,
@@ -102,7 +103,7 @@ const Index = ({
         console.error('user is not logged in')
       }
     },
-    [movieData]
+    [movieData, user]
   )
 
   return (
@@ -206,4 +207,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(Index))

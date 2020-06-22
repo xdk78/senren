@@ -19,6 +19,7 @@ import {
   StyledSelectWrapper,
   StyledSelect,
 } from 'pages/movie/[slug]'
+import withAuth from 'utils/withAuth'
 
 const StyledVideoWrapper = styled.div`
   display: grid;
@@ -57,6 +58,7 @@ const TvSeries = ({
   pending,
   error,
   addToWatchlist,
+  user,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const [selection, setSelection] = useState<string>('select')
@@ -73,7 +75,6 @@ const TvSeries = ({
 
   const onAddToWatchlist = useCallback(
     (type) => (e) => {
-      const user = firebase.auth().currentUser
       if (user && tvData && !error) {
         addToWatchlist('tv', user, {
           title: tvData.title,
@@ -86,7 +87,7 @@ const TvSeries = ({
         console.error('user is not logged in')
       }
     },
-    [tvData]
+    [tvData, user]
   )
 
   return (
@@ -213,4 +214,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TvSeries)
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(TvSeries))

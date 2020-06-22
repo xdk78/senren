@@ -8,19 +8,21 @@ import { connect } from 'react-redux'
 import { fetchMovieWatchlist, fetchTvWatchlist } from 'actions/watchlistActions'
 import firebase from 'firebase/clientApp'
 import Tabs from 'components/Tabs'
+import withAuth from 'utils/withAuth'
+
 const Watchlist = ({
   movieData,
   tvData,
   fetchMovieWatchlist,
   fetchTvWatchlist,
+  user,
 }) => {
   useEffect(() => {
-    const user = firebase.auth().currentUser
     if (user) {
       fetchMovieWatchlist(user)
       fetchTvWatchlist(user)
     }
-  }, [])
+  }, [user])
 
   const [inputValue, setInputValue] = useState('')
   const onInputChange = (e) => {
@@ -64,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Watchlist)
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(Watchlist))
