@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback, useState } from 'react'
-import styled from 'utils/styled-components'
 import { useRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { fetchTv } from 'actions/tvActions'
@@ -11,45 +10,21 @@ import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import ReactPlayer from 'react-player'
 import Spinner, { LoaderWrapper } from 'components/Spinner'
-import { addToWatchlist } from 'actions/watchlistActions'
+import { addToWatchlist, removeFromWatchlist } from 'actions/watchlistActions'
 import { EntryType } from 'actions/trendingActions'
 import firebase from 'firebase/clientApp'
+import withAuth from 'utils/withAuth'
 import {
-  StyledOption,
+  StyledGenereWrapper,
+  StyledGenereItem,
+  StyledLink,
+  StyledButtonsWrapper,
+  StyledCenterWrapper,
+  StyledVideoWrapper,
   StyledSelectWrapper,
   StyledSelect,
-} from 'pages/movie/[slug]'
-import withAuth from 'utils/withAuth'
-
-const StyledVideoWrapper = styled.div`
-  display: grid;
-  height: 600px;
-  @media (max-width: 900px) {
-    height: 300px;
-  }
-`
-
-const StyledLink = styled.a`
-  color: white;
-  text-decoration: none;
-`
-const StyledWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  justify-items: center;
-`
-const StyledGenereWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`
-
-const StyledGenereItem = styled.p`
-  border: 2px solid ${({ theme }) => theme.primary};
-  padding: 10px;
-  color: ${({ theme }) => theme.fontColor};
-  margin: 10px;
-`
+  StyledOption,
+} from 'components/shared'
 
 const TvSeries = ({
   fetchTv,
@@ -58,6 +33,7 @@ const TvSeries = ({
   pending,
   error,
   addToWatchlist,
+  removeFromWatchlist,
   user,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(true)
@@ -74,7 +50,7 @@ const TvSeries = ({
   }
 
   const onAddToWatchlist = useCallback(
-    (type) => (e) => {
+    (type) => () => {
       if (user && tvData && !error) {
         addToWatchlist('tv', user, {
           title: tvData.title,
@@ -83,6 +59,19 @@ const TvSeries = ({
           type: type,
         })
         alert('Added to watchlist')
+      } else {
+        console.error('user is not logged in')
+      }
+    },
+    [tvData, user]
+  )
+  const onRemoveFromWatchlist = useCallback(
+    () => () => {
+      if (user && tvData && !error) {
+        removeFromWatchlist('tv', user, {
+          tmdbId: tvData.id,
+        })
+        alert('Removed from watchlist')
       } else {
         console.error('user is not logged in')
       }
@@ -112,14 +101,24 @@ const TvSeries = ({
               }`}
             />
           )}
-          <StyledGenereWrapper>
-            {tvData &&
-              tvData.genres &&
-              tvData.genres.map((item) => (
-                <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
-              ))}
-          </StyledGenereWrapper>
-          <StyledWrapper>
+          <StyledCenterWrapper>
+            <StyledGenereWrapper>
+              {tvData &&
+                tvData.genres &&
+                tvData.genres.map((item) => (
+                  <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
+                ))}
+            </StyledGenereWrapper>
+            <StyledGenereWrapper>
+              {tvData?.vote_average && (
+                <StyledLink bold>
+                  {`Rating: `}
+                  <span>{`${tvData.vote_average}/10`}</span>
+                </StyledLink>
+              )}
+            </StyledGenereWrapper>
+          </StyledCenterWrapper>
+          <StyledButtonsWrapper>
             <StyledSelectWrapper>
               <StyledSelect
                 name="watchlist_type"
@@ -141,17 +140,10 @@ const TvSeries = ({
                 Add to Watchlist
               </Button>
             </StyledSelectWrapper>
-            {tvData?.vote_average && (
-              <Button>{`${tvData.vote_average}/10  `}</Button>
-            )}
-            {tvData?.homepage && (
-              <Button>
-                <StyledLink target="__blank" href={tvData.homepage}>
-                  Watch
-                </StyledLink>
-              </Button>
-            )}
-          </StyledWrapper>
+            <Button onClick={onRemoveFromWatchlist()}>
+              Remove from watchlist
+            </Button>
+          </StyledButtonsWrapper>
           {tvData?.next_episode_to_air && (
             <div>
               <Heading>Next Episode to Air</Heading>{' '}
@@ -175,6 +167,13 @@ const TvSeries = ({
                 />
               </StyledVideoWrapper>
             </>
+          )}
+          {tvData?.homepage && (
+            <Button>
+              <StyledLink target="__blank" href={tvData.homepage}>
+                Watch
+              </StyledLink>
+            </Button>
           )}
           <Heading>Seasons</Heading>
           <Paragraph>All of TV Series seasons</Paragraph>
@@ -211,6 +210,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   addToWatchlist: (type: EntryType, user: firebase.User, data) => {
     dispatch(addToWatchlist(type, user, data))
+  },
+  removeFromWatchlist: (type: EntryType, user: firebase.User, data) => {
+    dispatch(removeFromWatchlist(type, user, data))
   },
 })
 

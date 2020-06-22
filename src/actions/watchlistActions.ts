@@ -6,9 +6,15 @@ import { WatchlistEntry } from 'reducers/watchlistReducer'
 export const ADD_TO_WATCHLIST_PENDING = 'ADD_TO_WATCHLIST_PENDING'
 export const ADD_TO_WATCHLIST_SUCCESS = 'ADD_TO_WATCHLIST_SUCCESS'
 export const ADD_TO_WATCHLIST_ERROR = 'ADD_TO_WATCHLIST_ERROR'
+
+export const REMOVE_FROM_WATCHLIST_PENDING = 'REMOVE_FROM_WATCHLIST_PENDING'
+export const REMOVE_FROM_WATCHLIST_SUCCESS = 'REMOVE_FROM_WATCHLIST_SUCCESS'
+export const REMOVE_FROM_WATCHLIST_ERROR = 'REMOVE_FROM_WATCHLIST_ERROR'
+
 export const FETCH_MOVIE_WATCHLIST_PENDING = 'FETCH_MOVIE_WATCHLIST_PENDING'
 export const FETCH_MOVIE_WATCHLIST_SUCCESS = 'FETCH_MOVIE_WATCHLIST_SUCCESS'
 export const FETCH_MOVIE_WATCHLIST_ERROR = 'FETCH_MOVIE_WATCHLIST_ERROR'
+
 export const FETCH_TV_WATCHLIST_PENDING = 'FETCH_TV_WATCHLIST_PENDING'
 export const FETCH_TV_WATCHLIST_SUCCESS = 'FETCH_TV_WATCHLIST_SUCCESS'
 export const FETCH_TV_WATCHLIST_ERROR = 'FETCH_TV_WATCHLIST_ERROR'
@@ -69,6 +75,60 @@ export const addToWatchlist = (
     dispatch(addToWatchlistSuccess())
   } catch (error) {
     dispatch(addToWatchlistError(error.toString()))
+    throw error
+  }
+}
+
+// REMOVE FROM WATCHLIST
+
+export interface RemoveFromWatchlistPending extends Action {
+  type: 'REMOVE_FROM_WATCHLIST_PENDING'
+}
+
+export const RemoveFromWatchlistPending: ActionCreator<RemoveFromWatchlistPending> = () => ({
+  type: REMOVE_FROM_WATCHLIST_PENDING,
+})
+
+export interface RemoveFromWatchlistSucces extends Action {
+  type: 'REMOVE_FROM_WATCHLIST_SUCCESS'
+}
+
+export const RemoveFromWatchlistSuccess: ActionCreator<RemoveFromWatchlistSucces> = () => ({
+  type: REMOVE_FROM_WATCHLIST_SUCCESS,
+})
+
+export interface RemoveFromWatchlistError extends Action {
+  type: 'REMOVE_FROM_WATCHLIST_ERROR'
+  payload: { error: any }
+}
+
+export const RemoveFromWatchlistError: ActionCreator<RemoveFromWatchlistError> = (
+  error: any
+) => ({
+  type: REMOVE_FROM_WATCHLIST_ERROR,
+  payload: { error },
+})
+
+export const removeFromWatchlist = (
+  type: EntryType,
+  user: firebase.User,
+  data
+) => async (dispatch) => {
+  try {
+    dispatch(RemoveFromWatchlistPending())
+    await firebase
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .collection('watchlist')
+      .doc(type)
+      .collection('items')
+      .doc(data.tmdbId.toString())
+      .delete()
+
+    dispatch(RemoveFromWatchlistSuccess())
+  } catch (error) {
+    dispatch(RemoveFromWatchlistError(error.toString()))
     throw error
   }
 }
@@ -195,6 +255,9 @@ export type WatchlistActions =
   | AddToWatchlistPending
   | AddToWatchlistSucces
   | AddToWatchlistError
+  | RemoveFromWatchlistPending
+  | RemoveFromWatchlistSucces
+  | RemoveFromWatchlistError
   | fetchMovieWatchlistPending
   | fetchMovieWatchlistSuccess
   | fetchMovieWatchlistError

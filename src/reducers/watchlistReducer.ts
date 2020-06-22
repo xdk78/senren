@@ -10,6 +10,9 @@ import {
   FETCH_TV_WATCHLIST_ERROR,
   FETCH_TV_WATCHLIST_PENDING,
   FETCH_TV_WATCHLIST_SUCCESS,
+  REMOVE_FROM_WATCHLIST_SUCCESS,
+  REMOVE_FROM_WATCHLIST_ERROR,
+  REMOVE_FROM_WATCHLIST_PENDING,
 } from 'actions/watchlistActions'
 
 type MovieState = {
@@ -88,6 +91,25 @@ export const watchlistReducer: Reducer<MovieState> = (
       }
     }
     case FETCH_TV_WATCHLIST_ERROR: {
+      return {
+        ...state,
+        error: action.payload.error,
+        isPending: false,
+      }
+    }
+    case REMOVE_FROM_WATCHLIST_PENDING: {
+      return {
+        ...state,
+        isPending: true,
+      }
+    }
+    case REMOVE_FROM_WATCHLIST_SUCCESS: {
+      return {
+        ...state,
+        isPending: false,
+      }
+    }
+    case REMOVE_FROM_WATCHLIST_ERROR: {
       return {
         ...state,
         error: action.payload.error,

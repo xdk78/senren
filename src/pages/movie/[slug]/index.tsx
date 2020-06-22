@@ -5,67 +5,25 @@ import { fetchMovie } from 'actions/movieActions'
 import ReactPlayer from 'react-player'
 import PageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
 import FeaturedGridElement from 'components/FeaturedGridElement'
-import styled from 'utils/styled-components'
 import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
 import Spinner, { LoaderWrapper } from 'components/Spinner'
 import firebase from 'firebase/clientApp'
-import { addToWatchlist } from 'actions/watchlistActions'
+import { addToWatchlist, removeFromWatchlist } from 'actions/watchlistActions'
 import { EntryType } from 'actions/trendingActions'
 import withAuth from 'utils/withAuth'
-
-const StyledWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  justify-items: center;
-  width: 100%;
-`
-
-const StyledGenereWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`
-
-const StyledGenereItem = styled.p`
-  border: 2px solid ${({ theme }) => theme.primary};
-  padding: 10px;
-  color: ${({ theme }) => theme.fontColor};
-  margin: 10px;
-`
-const StyledVideoWrapper = styled.div`
-  display: grid;
-  height: 600px;
-  @media (max-width: 900px) {
-    height: 300px;
-  }
-`
-const StyledLink = styled.a`
-  color: white;
-  text-decoration: none;
-`
-
-export const StyledSelectWrapper = styled.div`
-  display: grid;
-  background: transparent;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  justify-items: center;
-  align-items: center;
-`
-
-export const StyledSelect = styled.select`
-  background: transparent;
-  color: ${({ theme }) => theme.fontColor};
-  padding: 4px;
-  margin: 12px 12px 0px 0px;
-  border-radius: 8px;
-`
-
-export const StyledOption = styled.option`
-  color: ${({ theme }) => theme.fontColor};
-  background: ${({ theme }) => theme.auth.background};
-`
+import {
+  StyledCenterWrapper,
+  StyledGenereWrapper,
+  StyledGenereItem,
+  StyledLink,
+  StyledButtonsWrapper,
+  StyledSelect,
+  StyledSelectWrapper,
+  StyledOption,
+  StyledVideoWrapper,
+} from 'components/shared'
 
 const Index = ({
   fetchMovie,
@@ -75,6 +33,7 @@ const Index = ({
   movieError,
   addToWatchlist,
   user,
+  removeFromWatchlist,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const [selection, setSelection] = useState<string>('select')
@@ -106,6 +65,20 @@ const Index = ({
     [movieData, user]
   )
 
+  const onRemoveFromWatchlist = useCallback(
+    () => () => {
+      if (user && movieData && !movieError) {
+        removeFromWatchlist('movie', user, {
+          tmdbId: movieData.id,
+        })
+        alert('Removed from watchlist')
+      } else {
+        console.error('user is not logged in')
+      }
+    },
+    [movieData, user]
+  )
+
   return (
     <PageTemplate>
       {moviePending && !movieError ? (
@@ -130,14 +103,24 @@ const Index = ({
               }`}
             />
           )}
-          <StyledGenereWrapper>
-            {movieData &&
-              movieData.genres &&
-              movieData.genres.map((item) => (
-                <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
-              ))}
-          </StyledGenereWrapper>
-          <StyledWrapper>
+          <StyledCenterWrapper>
+            <StyledGenereWrapper>
+              {movieData &&
+                movieData.genres &&
+                movieData.genres.map((item) => (
+                  <StyledGenereItem key={item.id}>{item.name}</StyledGenereItem>
+                ))}
+            </StyledGenereWrapper>
+            <StyledGenereWrapper>
+              {movieData?.vote_average && (
+                <StyledLink bold>
+                  {`Rating: `}
+                  <span>{`${movieData.vote_average}/10`}</span>
+                </StyledLink>
+              )}
+            </StyledGenereWrapper>
+          </StyledCenterWrapper>
+          <StyledButtonsWrapper>
             <StyledSelectWrapper>
               <StyledSelect
                 name="watchlist_type"
@@ -159,15 +142,11 @@ const Index = ({
                 Add to Watchlist
               </Button>
             </StyledSelectWrapper>
-            {movieData && <Button>{`${movieData.vote_average}/10  `}</Button>}
-            {movieData && (
-              <Button>
-                <StyledLink target="__blank" href={movieData.homepage}>
-                  Watch
-                </StyledLink>
-              </Button>
-            )}
-          </StyledWrapper>
+            <Button onClick={onRemoveFromWatchlist()}>
+              Remove from watchlist
+            </Button>
+          </StyledButtonsWrapper>
+
           {trailerData?.result && trailerData.length > 0 && (
             <>
               <Heading>Trailer</Heading>
@@ -204,6 +183,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   addToWatchlist: (type: EntryType, user: firebase.User, data) => {
     dispatch(addToWatchlist(type, user, data))
+  },
+  removeFromWatchlist: (type: EntryType, user: firebase.User, data) => {
+    dispatch(removeFromWatchlist(type, user, data))
   },
 })
 
