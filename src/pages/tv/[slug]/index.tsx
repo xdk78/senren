@@ -25,6 +25,8 @@ import {
   StyledSelect,
   StyledOption,
 } from 'components/shared'
+import {useWindowSize} from 'hooks/useWindowSize'
+
 
 const TvSeries = ({
   fetchTv,
@@ -39,6 +41,7 @@ const TvSeries = ({
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const [selection, setSelection] = useState<string>('select')
   const router = useRouter()
+  const {innerWidth} =  useWindowSize()
   useEffect(() => {
     const { slug } = router.query
     fetchTv(slug)
@@ -96,7 +99,7 @@ const TvSeries = ({
             <FeaturedGridElement
               title={tvData.title}
               about={tvData.tagline}
-              description={tvData.overview}
+              description={innerWidth < 748 ? `${tvData.overview.slice(0,100)}...` :tvData.overview }
               image={`https://image.tmdb.org/t/p/original/${
                 tvData.backdrop_path ? tvData.backdrop_path : tvData.poster_path
               }`}

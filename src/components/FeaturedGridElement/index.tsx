@@ -31,6 +31,10 @@ const StyledInnerWrapper = styled.div`
   border-radius: 0px 0px 20px 20px;
   padding: 20px;
   padding-top: 10px;
+  @media (max-width: 748px) {
+    padding: 15px;
+    padding-top: 5px;
+  }
 `
 
 const StyledHeading = styled.h3`
@@ -38,6 +42,9 @@ const StyledHeading = styled.h3`
   font-size: 28px;
   padding-bottom: 15px;
   text-shadow: 2px 2px 8px rgb(49 49 49 / 79%);
+  @media (max-width: 748px) {
+    padding: 0px;
+  }
 `
 const StyledParagraph = styled.p`
   color: white;
@@ -45,6 +52,9 @@ const StyledParagraph = styled.p`
   padding-bottom: 12px;
   text-align: justify;
   text-shadow: 2px 2px 8px rgb(49 49 49 / 79%);
+  @media (max-width: 748px) {
+    padding: 0px;
+  }
 `
 
 const FeaturedGridElement = ({
