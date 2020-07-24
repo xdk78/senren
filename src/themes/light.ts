@@ -1,7 +1,7 @@
 import ThemeInterface from '.'
 
 const LightTheme: ThemeInterface = {
-  primary: '#8103f4',
+  primary: '#805acb',
   background: '#FFFFFF',
   fontColor: '#000000',
   buttonFont: '#FFFFFF',
@@ -12,27 +12,27 @@ const LightTheme: ThemeInterface = {
     placehoder: '#AFAFAF',
   },
   spinner: {
-    primary: '#8103f4',
-    secondary: '#052555',
+    primary: '#805acb',
+    secondary: '#4e2f99',
   },
   auth: {
     background: '#FFFFFF',
-    primary: '#5199FF',
-    button: '#8103f4',
+    primary: '#805acb',
+    button: '#805acb',
   },
   nav: {
     background: '#F8F6FA',
     link: '#707070',
-    activeLink: '#5199FF',
+    activeLink: '#805acb',
   },
   mobileNav: {
     background: '#FFFFFF',
     iconBackground: '#F6F6F6',
-    icon: '#5199FF',
+    icon: '#805acb',
   },
   footer: {
     background: '#2F2F2F',
-    accent: '#5199FF',
+    accent: '#805acb',
     fontColor: '#9E9E9E',
   },
   gridElements: {

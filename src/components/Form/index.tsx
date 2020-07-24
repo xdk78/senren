@@ -17,12 +17,14 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   border-radius: 23px;
   justify-items: stretch;
   align-items: center;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.nav.background};
 `
 
 export const StyledHeading = styled.h1`
-  color: ${({ theme }) => theme.buttonFont};
+  color: ${({ theme }) => theme.primary};
+  font-weight: 700;
 `
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;

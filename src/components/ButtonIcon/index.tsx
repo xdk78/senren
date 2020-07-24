@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'utils/styled-components'
 import { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
+
 type StyledButtonIconProps = {
   award?: boolean
 }
@@ -28,7 +29,7 @@ const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
   ${({ award }) =>
     award &&
     css`
-      color: ${({ theme }) => theme.fontColor};
+      color: ${({ theme }) => theme.buttonFont};
     `}
 `
 

@@ -1,24 +1,24 @@
 import ThemeInterface from '.'
 
 const DarkTheme: ThemeInterface = {
-  primary: '#8103f4',
+  primary: '#805acb',
   background: '#000000',
   fontColor: '#FFFFFF',
   buttonFont: '#FFFFFF',
   boxShadow: '',
   spinner: {
-    primary: '#8103f4',
+    primary: '#805acb',
     secondary: '#052555',
   },
   inputs: {
-    input: '#01142F',
+    input: '#2F2F2F',
     largeInput: '#2F2F2F',
     placehoder: '#AFAFAF',
   },
   auth: {
     background: '#01142F',
     primary: '#052555',
-    button: '#8103f4',
+    button: '#805acb',
   },
   nav: {
     background: '#131313',
@@ -32,7 +32,7 @@ const DarkTheme: ThemeInterface = {
   },
   footer: {
     background: '#2F2F2F',
-    accent: '#5199FF',
+    accent: '#805acb',
     fontColor: '#9E9E9E',
   },
   gridElements: {
