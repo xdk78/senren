@@ -11,6 +11,9 @@ html, body {
   padding: 0px;
   overflow-x: hidden;
 }
+@media (prefers-color-scheme: dark) {
+  html, body { background-color: black }
+}
 `
 
 export default GlobalStyle
