@@ -18,11 +18,7 @@ export const FeaturedGridBlockStroy = () => {
   return (
     <>
       <Wrapper>
-        <Navbar
-          username="okwasniewski"
-          userEmail="okwasniewski@icloud.com"
-          isLoggedIn={true}
-        />
+        <Navbar userEmail="user@email.com" isLoggedIn={true} />
       </Wrapper>
       <DarkWrapper>
         <Navbar isLoggedIn={false} />
