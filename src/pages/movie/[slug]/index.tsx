@@ -24,7 +24,7 @@ import {
   StyledOption,
   StyledVideoWrapper,
 } from 'components/shared'
-import {useWindowSize} from 'hooks/useWindowSize'
+import { useWindowSize } from 'hooks/useWindowSize'
 
 const Index = ({
   fetchMovie,
@@ -39,7 +39,7 @@ const Index = ({
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const [selection, setSelection] = useState<string>('select')
   const router = useRouter()
-  const {innerWidth} =  useWindowSize()
+  const { innerWidth } = useWindowSize()
   useEffect(() => {
     const { slug } = router.query
     fetchMovie(slug)
@@ -98,7 +98,11 @@ const Index = ({
             <FeaturedGridElement
               title={movieData.title}
               about={movieData.tagline}
-              description={innerWidth < 748 ? `${movieData.overview.slice(0,100)}...` :movieData.overview}
+              description={
+                innerWidth < 748
+                  ? `${movieData.overview.slice(0, 100)}...`
+                  : movieData.overview
+              }
               image={`https://image.tmdb.org/t/p/original/${
                 movieData.backdrop_path
                   ? movieData.backdrop_path
