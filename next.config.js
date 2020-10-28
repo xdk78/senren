@@ -23,4 +23,7 @@ module.exports = {
 
     return config
   },
+  images: {
+    domains: ['image.tmdb.org'],
+  },
 }

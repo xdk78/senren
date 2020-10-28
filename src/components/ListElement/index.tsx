@@ -74,6 +74,8 @@ const ListElement = ({
         src={
           image ? `https://image.tmdb.org/t/p/w500/${image}` : ImagePlaceholder
         }
+        width={85}
+        height={85}
       />
       <StyledInnerWrapper>
         {link ? (
