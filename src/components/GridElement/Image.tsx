@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'utils/styled-components'
 import { motion, useInvertedScale } from 'framer-motion'
 import { closeSpring } from 'utils/animations'
+import NextImage from 'next/image'
 
 type StyledImageContainerProps = {
   isSelected?: boolean
@@ -21,7 +22,6 @@ const StyledImageContainer = styled(motion.div)<StyledImageContainerProps>`
     `}
 `
 
-const StyledImage = styled(motion.img)``
 export const Image = ({ isSelected, src }) => {
   const inverted = useInvertedScale()
 
@@ -30,13 +30,13 @@ export const Image = ({ isSelected, src }) => {
       isSelected={isSelected}
       style={{ ...inverted, originX: 0, originY: 0 }}
     >
-      <StyledImage
-        src={src}
-        alt={src}
+      <motion.section
         initial={false}
         animate={isSelected ? { x: -20, y: -20 } : { x: 0, y: 0 }}
         transition={closeSpring}
-      />
+      >
+        <NextImage src={src} alt={src} unsized={true} />
+      </motion.section>
     </StyledImageContainer>
   )
 }
