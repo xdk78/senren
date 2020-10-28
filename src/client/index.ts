@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 const BASE_URL = 'https://api.themoviedb.org/3'
 const API_KEY = String(process.env.THEMOVIEDB_API_KEY)
 
-export default (endpoint: string, config?: AxiosRequestConfig) => {
+const client = (endpoint: string, config?: AxiosRequestConfig) => {
   return axios({
     ...config,
     ...{
@@ -14,3 +14,5 @@ export default (endpoint: string, config?: AxiosRequestConfig) => {
     },
   })
 }
+
+export default client
