@@ -4,7 +4,6 @@ import { useInvertedBorderRadius } from 'utils/use-inverted-border-radius'
 import styled, { css } from 'utils/styled-components'
 import { openSpring, closeSpring } from 'utils/animations'
 import { useScrollConstraints } from 'utils/use-scroll-constraints'
-import { useWheelScroll } from 'utils/use-wheel-scroll'
 import { Title } from './Title'
 import { Content } from './Content'
 import { Image } from './Image'
@@ -114,7 +113,6 @@ const GridElement = ({
   }
 
   const containerRef = useRef(null)
-  useWheelScroll(containerRef, y, constraints, checkSwipeToDismiss, isSelected)
 
   return (
     <StyledCard
@@ -130,13 +128,14 @@ const GridElement = ({
           onClick={() => setSelection(true)}
           ref={gridRef}
           style={{ ...inverted, zIndex, y }}
-          layoutTransition={isSelected ? openSpring : closeSpring}
+          layout={true}
+          transition={isSelected ? openSpring : closeSpring}
           drag={isSelected ? 'y' : false}
           dragConstraints={constraints}
           onDrag={checkSwipeToDismiss}
           onUpdate={checkZIndex}
         >
-          <Image isSelected={isSelected} src={src} />
+          <Image isSelected={isSelected} src={src} width={700} height={700} />
           <Title title={title} isSelected={isSelected} />
           <Content content={content} />
 

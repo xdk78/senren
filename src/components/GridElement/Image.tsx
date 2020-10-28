@@ -22,7 +22,7 @@ const StyledImageContainer = styled(motion.div)<StyledImageContainerProps>`
     `}
 `
 
-export const Image = ({ isSelected, src }) => {
+export const Image = ({ isSelected, src, width, height }) => {
   const inverted = useInvertedScale()
 
   return (
@@ -35,7 +35,7 @@ export const Image = ({ isSelected, src }) => {
         animate={isSelected ? { x: -20, y: -20 } : { x: 0, y: 0 }}
         transition={closeSpring}
       >
-        <NextImage src={src} alt={src} unsized={true} />
+        <NextImage src={src} alt={src} width={width} height={height} />
       </motion.section>
     </StyledImageContainer>
   )
