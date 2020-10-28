@@ -11,7 +11,7 @@ import reducers from 'reducers'
  * @param {boolean} options.debug User-defined debug mode param
  * @param {string} options.storeKey This key will be used to preserve store in global namespace for safe HMR
  */
-export default (initialState) => {
+const store = (initialState) => {
   const store = createStore(
     reducers,
     initialState,
@@ -29,3 +29,5 @@ export default (initialState) => {
 
   return store
 }
+
+export default store
