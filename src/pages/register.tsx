@@ -35,7 +35,10 @@ const Register = () => {
       .then(() => router.push('/'))
       .catch((error) => console.error(error))
 
-    setValue([{ email: '' }, { password: '' }, { name: '' }, { password2: '' }])
+    setValue('email', '')
+    setValue('password', '')
+    setValue('name', '')
+    setValue('password2', '')
   }
   return (
     <AuthPageTemplate>

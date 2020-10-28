@@ -34,7 +34,8 @@ const Login = () => {
       .signInWithEmailAndPassword(data.email, data.password)
       .then(() => router.push('/'))
       .catch((error) => console.error(error))
-    setValue([{ email: '' }, { password: '' }])
+    setValue('email', '')
+    setValue('password', '')
   }
   return (
     <AuthPageTemplate>
