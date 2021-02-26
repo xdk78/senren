@@ -1,44 +1,44 @@
 import ThemeInterface from '.'
 
 const LightTheme: ThemeInterface = {
-  primary: '#805acb',
-  background: '#FFFFFF',
-  fontColor: '#000000',
+  primary: '#6366F1',
+  background: '#F9FAFB',
+  fontColor: '#111827',
   buttonFont: '#FFFFFF',
   boxShadow: '',
-  inputs: {
-    input: '#FFFFFF',
-    largeInput: '#EFEFEF',
-    placehoder: '#AFAFAF',
-  },
   spinner: {
-    primary: '#805acb',
-    secondary: '#4e2f99',
+    primary: '#6366F1',
+    secondary: '#312E81',
+  },
+  inputs: {
+    input: '#E5E7EB',
+    largeInput: '#E5E7EB',
+    placehoder: '#6B7280',
   },
   auth: {
-    background: '#FFFFFF',
-    primary: '#805acb',
-    button: '#805acb',
+    background: '#E5E7EB',
+    primary: '#312E81',
+    button: '#6366F1',
   },
   nav: {
-    background: '#F8F6FA',
-    link: '#707070',
-    activeLink: '#805acb',
+    background: '#F9FAFB',
+    link: '#6B7280',
+    activeLink: '#4B5563',
   },
   mobileNav: {
-    background: '#FFFFFF',
-    iconBackground: '#F6F6F6',
-    icon: '#805acb',
+    background: '#E5E7EB',
+    iconBackground: '#D1D5DB',
+    icon: '#6B7280',
   },
   footer: {
-    background: '#2F2F2F',
-    accent: '#805acb',
+    background: '#F3F4F6',
+    accent: '#6366F1',
     fontColor: '#9E9E9E',
   },
   gridElements: {
     fontColor: '#FFFFFF',
-    background: '#fdfdfd',
-    paragraphColor: '#000000',
+    background: '#F9FAFB',
+    paragraphColor: '#FFFFFF',
     boxshadow: '',
   },
 }

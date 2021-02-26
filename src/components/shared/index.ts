@@ -9,7 +9,7 @@ export const StyledVideoWrapper = styled.div`
 `
 
 export const StyledLink = styled.a<{ bold? }>`
-  color: white;
+  color: ${({ theme }) => theme.fontColor};
   text-decoration: none;
   ${({ bold }) =>
     bold &&

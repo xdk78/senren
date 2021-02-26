@@ -29,6 +29,9 @@ const Button = styled(motion.button)<StyledButtonProps>`
     background-color: ${({ theme }) => theme.nav.link};
     cursor: default;
   }
+  & > a {
+    color: ${({ theme }) => theme.buttonFont};
+  }
 `
 
 export default Button

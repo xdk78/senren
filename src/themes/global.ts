@@ -12,7 +12,7 @@ html, body {
   overflow-x: hidden;
 }
 @media (prefers-color-scheme: dark) {
-  html, body { background-color: black }
+  html, body { background-color: #111827; }
 }
 `
 
