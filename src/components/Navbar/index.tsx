@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import styled, { css } from 'utils/styled-components'
 import WrapButton from 'components/ButtonIcon'

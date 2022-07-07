@@ -1,4 +1,4 @@
-import { useMotionValue, useInvertedScale } from 'framer-motion'
+import { useMotionValue, useDeprecatedInvertedScale } from 'framer-motion'
 import { useEffect } from 'react'
 
 /**
@@ -17,7 +17,7 @@ import { useEffect } from 'react'
 export function useInvertedBorderRadius(radius: number) {
   const scaleX = useMotionValue(1)
   const scaleY = useMotionValue(1)
-  const inverted = useInvertedScale({ scaleX, scaleY })
+  const inverted = useDeprecatedInvertedScale({ scaleX, scaleY })
   const borderRadius = useMotionValue(`${radius}px`)
 
   useEffect(() => {

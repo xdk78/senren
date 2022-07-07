@@ -1,7 +1,8 @@
+/** @type {import('next').NextConfig} */
 // On production, variables are set with `now secrets`. On development, they use the .env file
 require('dotenv').config()
 
-module.exports = {
+const nextConfig = {
   env: {
     THEMOVIEDB_API_KEY: process.env.THEMOVIEDB_API_KEY,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
@@ -12,18 +13,13 @@ module.exports = {
     FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: {
-        test: /\.(js|ts)x?$/,
-      },
-      use: ['@svgr/webpack', 'url-loader'],
-    })
-
-    return config
-  },
   images: {
     domains: ['image.tmdb.org'],
   },
+  reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
+  },
 }
+
+module.exports = nextConfig

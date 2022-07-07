@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import FormWrapper, { StyledForm } from 'components/Form'
 import AuthPageTemplate from 'templates/AuthPageTemplate'
 import Input from 'components/Input'
 import Button from 'components/Button'
-import LoginImage from 'public/LoginImage.svg'
 import firebase from 'firebase/clientApp'
 import { FaGoogle } from 'react-icons/fa'
 import WrapButton from 'components/ButtonIcon'
+import Image from 'next/image'
+import { StyledLoginImageContainer } from './login'
 
 const Register = () => {
   const router = useRouter()
@@ -48,19 +49,26 @@ const Register = () => {
             placeholder="Email"
             type="email"
             name="email"
-            ref={register({ required: true, minLength: 5 })}
+            {...register('email', {
+              required: true,
+              minLength: 5,
+            })}
           />
           <Input
             placeholder="Password"
             type="password"
             name="password"
-            ref={register({ required: true, minLength: 8 })}
+            {...register('password', {
+              required: true,
+              minLength: 8,
+              validate: (value) => value === watch('password'),
+            })}
           />
           <Input
             placeholder="Repeat your password"
             type="password"
             name="password2"
-            ref={register({
+            {...register('password2', {
               required: true,
               minLength: 8,
               validate: (value) => value === watch('password'),
@@ -70,16 +78,19 @@ const Register = () => {
             Register
           </Button>
           {WrapButton(FaGoogle)({
-            text: ' Sign in with Google',
+            text: 'Sign in with Google',
             onClick: () => signInWithGoogle(),
           })}
-          {/* <Button >
-            <FaGoogle />
-            Sign in with Google
-          </Button> */}
         </StyledForm>
       </FormWrapper>
-      <img src={LoginImage} alt="img" />
+      <StyledLoginImageContainer>
+        <Image
+          src="/LoginImage.svg"
+          width={500}
+          height={500}
+          alt="LoginImage"
+        />
+      </StyledLoginImageContainer>
     </AuthPageTemplate>
   )
 }

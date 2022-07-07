@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
 import { useInvertedBorderRadius } from 'utils/use-inverted-border-radius'
 import styled, { css } from 'utils/styled-components'

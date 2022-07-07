@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Input from 'components/Input'
 import { useRouter } from 'next/router'
 
@@ -9,7 +9,8 @@ type SearchProps = {
 const Search = ({ placeholder }: SearchProps) => {
   const [inputValue, setInputValue] = useState<string>('')
   const router = useRouter()
-  const OnSubmit = () => {
+  const OnSubmit = (e) => {
+    e.preventDefault()
     router.push(`/search/${inputValue}`)
   }
   return (

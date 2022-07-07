@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PageTemplate, { StyledPageWrapper } from 'templates/PageTemplate'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'

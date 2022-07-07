@@ -1,8 +1,7 @@
-import React from 'react'
-import { Pie } from '@vx/shape'
-import { Group } from '@vx/group'
-import { GradientTealBlue } from '@vx/gradient'
-import { letterFrequency } from '@vx/mock-data'
+import { Pie } from '@visx/shape'
+import { Group } from '@visx/group'
+import { GradientTealBlue } from '@visx/gradient'
+import { letterFrequency } from '@visx/mock-data'
 
 const white = '#ffffff'
 const black = '#000000'

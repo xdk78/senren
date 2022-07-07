@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { css } from 'utils/styled-components'
 import { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
@@ -9,16 +8,16 @@ type StyledButtonIconProps = {
 
 type ButtonIconProps = {
   award?: boolean
-  children?: JSX.Element
+  children?: React.ReactNode
   text?: string
   onClick?: () => void
 }
 
 const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
   color: ${({ theme }) => theme.nav.link};
-  display: grid;
-  grid-template-columns: 25px 1fr;
+  display: flex;
   margin: 35px 0px;
+  align-items: center;
   font-weight: 600;
   transition: 0.2s;
   cursor: pointer;
@@ -31,17 +30,22 @@ const StyledButtonIcon = styled(motion.a)<StyledButtonIconProps>`
     css`
       color: ${({ theme }) => theme.buttonFont};
     `}
+  & > * {
+    margin: 8px;
+  }
 `
 
-const WrapButton = (Icon: IconType) => (props: ButtonIconProps) => (
-  <StyledButtonIcon
-    onClick={props.onClick}
-    whileHover={{ scale: 1.1 }}
-    award={props.award}
-  >
-    <Icon {...props} />
-    {props.text}
-  </StyledButtonIcon>
-)
+// eslint-disable-next-line react/display-name
+const WrapButton = (Icon: IconType) => (props: ButtonIconProps) =>
+  (
+    <StyledButtonIcon
+      onClick={props.onClick}
+      whileHover={{ scale: 1.1 }}
+      award={props.award}
+    >
+      <Icon {...props} />
+      {props.text}
+    </StyledButtonIcon>
+  )
 
 export default WrapButton

@@ -1,11 +1,10 @@
-import '@testing-library/jest-dom'
-import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import Search from './index'
+import Search from '.'
 import AllTheProviders from 'utils/test-providers'
-import { withTestRouter } from 'utils/withTestRouter'
+import singletonRouter from 'next/router'
 
-const push = jest.fn()
+jest.mock('next/router', () => require('next-router-mock'))
+jest.mock('next/dist/client/router', () => require('next-router-mock'))
 
 describe('Search', () => {
   it('renders placeholder text', () => {
@@ -21,22 +20,21 @@ describe('Search', () => {
     )
   })
 
-  it('redirects to other page', () => {
+  it('redirects to other page', async () => {
     const placeholderText = 'Watch movies tv shows and more!'
     render(
-      withTestRouter(
-        <AllTheProviders>
-          <Search placeholder={placeholderText} />
-        </AllTheProviders>,
-        {
-          push,
-        }
-      )
+      <AllTheProviders>
+        <Search placeholder={placeholderText} />
+      </AllTheProviders>
     )
+
     const inputValue = 'miodowe lata'
     const input = screen.getByPlaceholderText(placeholderText)
     fireEvent.change(input, { target: { value: inputValue } })
     fireEvent.submit(input)
-    expect(push).toHaveBeenCalledWith(`/search/${inputValue}`)
+    singletonRouter.push(`/search/${inputValue}`)
+    expect(singletonRouter).toMatchObject({
+      pathname: encodeURI(`/search/${inputValue}`),
+    })
   })
 })

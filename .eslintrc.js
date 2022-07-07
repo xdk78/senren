@@ -1,49 +1,39 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react-hooks', 'jest', 'prettier'],
   extends: [
-    'plugin:@typescript-eslint/recommended',
+    'eslint:recommended',
+    'react-app',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:@next/next/recommended',
+    'plugin:jest/recommended',
+    'plugin:testing-library/react',
     'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
     'prettier',
-    'prettier/@typescript-eslint',
   ],
-
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
+  plugins: [
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    'jest',
+    'testing-library',
+    '@typescript-eslint',
+    'prettier',
+  ],
   rules: {
-    'import/named': 'off',
-    'import/export': 'off',
-    'import/prefer-default-export': 'off',
-    'no-unused-expressions': [
-      'warn',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'jsx-a11y/anchor-is-valid': 'off',
+    '@typescript-eslint/quotes': [
+      'error',
+      'single',
       {
-        allowShortCircuit: true,
-        allowTernary: true,
+        avoidEscape: true,
+        allowTemplateLiterals: true,
       },
     ],
-    '@typescript-eslint/prefer-interface': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    'react/prop-types': 'off',
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    'jsx-a11y/anchor-is-valid': [
-      'off',
-      {
-        components: ['a'],
-        specialLink: ['href'],
-      },
-    ],
-  },
-  settings: {
-    react: {
-      version: 'detect',
-    },
+    'testing-library/no-node-access': 'off',
+    'react/prop-types': 'warn',
   },
 }

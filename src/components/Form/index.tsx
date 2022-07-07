@@ -1,14 +1,11 @@
-import React from 'react'
 import styled from 'utils/styled-components'
-
-type StyledWrapperProps = {}
 
 type FormProps = {
   text: string
-  children: JSX.Element
+  children?: React.ReactNode
 }
 
-const StyledWrapper = styled.div<StyledWrapperProps>`
+const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;

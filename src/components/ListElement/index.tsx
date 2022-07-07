@@ -1,10 +1,8 @@
-import React from 'react'
 import Link from 'next/link'
 import styled from 'utils/styled-components'
 import ListElementThumbnail from 'components/ListElementThumbnail'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'
-import ImagePlaceholder from 'public/img-placeholder.svg'
 
 type ListElementProps = {
   title: string
@@ -72,7 +70,9 @@ const ListElement = ({
     <StyledWrapper>
       <ListElementThumbnail
         src={
-          image ? `https://image.tmdb.org/t/p/w500/${image}` : ImagePlaceholder
+          image
+            ? `https://image.tmdb.org/t/p/w500/${image}`
+            : '/img-placeholder.svg'
         }
         width={85}
         height={85}

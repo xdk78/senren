@@ -1,8 +1,5 @@
-import React from 'react'
 import styled from 'utils/styled-components'
 import { FaGithub } from 'react-icons/fa'
-
-type FooterProps = {}
 
 const StyledWrapper = styled.div`
   background-color: ${({ theme }) => theme.footer.background};
@@ -29,7 +26,7 @@ const StyledInnerWrapper = styled.div`
   }
 `
 
-const Footer = ({}: FooterProps) => {
+const Footer = () => {
   return (
     <StyledWrapper>
       <StyledInnerWrapper>

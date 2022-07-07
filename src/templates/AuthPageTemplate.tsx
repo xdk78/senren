@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'utils/styled-components'
 import { DeviceWidth } from 'themes/constants'
 
