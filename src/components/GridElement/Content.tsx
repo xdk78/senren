@@ -1,5 +1,4 @@
-import React from 'react'
-import { motion, useInvertedScale } from 'framer-motion'
+import { motion, useDeprecatedInvertedScale } from 'framer-motion'
 import styled from 'utils/styled-components'
 import Paragraph from 'components/Paragraph'
 
@@ -11,7 +10,7 @@ const ContentContainer = styled(motion.div)`
 `
 
 export const Content = ({ content }) => {
-  const inverted = useInvertedScale()
+  const inverted = useDeprecatedInvertedScale()
   return (
     <ContentContainer style={{ ...inverted, originY: 0, originX: 0 }}>
       <Paragraph>{content}</Paragraph>

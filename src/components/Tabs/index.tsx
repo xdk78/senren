@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styled, { css } from 'utils/styled-components'
 import Heading from 'components/Heading'
 import { GridWrapper } from 'templates/PageTemplate'

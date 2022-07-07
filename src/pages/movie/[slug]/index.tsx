@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { fetchMovie } from 'actions/movieActions'

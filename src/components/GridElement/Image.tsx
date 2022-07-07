@@ -1,6 +1,5 @@
-import React from 'react'
 import styled, { css } from 'utils/styled-components'
-import { motion, useInvertedScale } from 'framer-motion'
+import { motion, useDeprecatedInvertedScale } from 'framer-motion'
 import { closeSpring } from 'utils/animations'
 import NextImage from 'next/image'
 
@@ -23,7 +22,7 @@ const StyledImageContainer = styled(motion.div)<StyledImageContainerProps>`
 `
 
 export const Image = ({ isSelected, src, width, height }) => {
-  const inverted = useInvertedScale()
+  const inverted = useDeprecatedInvertedScale()
 
   return (
     <StyledImageContainer

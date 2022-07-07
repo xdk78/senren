@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styled, { css } from 'utils/styled-components'
 import { motion } from 'framer-motion'
 import Navbar from 'components/Navbar'

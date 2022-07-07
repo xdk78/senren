@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { motion, useInvertedScale } from 'framer-motion'
+import { motion, useDeprecatedInvertedScale } from 'framer-motion'
 import { closeSpring, openSpring } from 'utils/animations'
 import styled from 'utils/styled-components'
 
@@ -19,7 +18,7 @@ const scaleTranslate = ({ x, y, scaleX, scaleY }) =>
   `scaleX(${scaleX}) scaleY(${scaleY}) translate(${x}, ${y}) translateZ(0)`
 
 export const Title = ({ title, isSelected }) => {
-  const inverted = useInvertedScale()
+  const inverted = useDeprecatedInvertedScale()
   const x = isSelected ? 30 : 15
   const y = x
 

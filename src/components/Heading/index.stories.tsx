@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'utils/styled-components'
 import Heading from 'components/Heading'
 import Paragraph from 'components/Paragraph'

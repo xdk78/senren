@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'utils/styled-components'
 import WrapButton from '.'
 import { FaSearch, FaFacebook } from 'react-icons/fa'
